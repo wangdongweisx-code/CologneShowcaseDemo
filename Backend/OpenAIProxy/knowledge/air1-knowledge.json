@@ -1,0 +1,433 @@
+{
+  "version": "2026-08-14",
+  "product": "Momcozy Air 1 Wearable Breast Pump",
+  "chunks": [
+    {
+      "id": "quick-01",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Product service life",
+      "text": "The expected operating life of the washable parts is one to three months. Check whether the product operates normally before use. Use beyond service life may reduce performance; incorrect vacuum control or excessive vacuum may cause injury."
+    },
+    {
+      "id": "quick-02",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Precautions before use",
+      "text": "Keep the pump motor dry. The diaphragm must be completely dry. Attach the diaphragm silicone to the milk cup lid before assembly to prevent air leakage. Detach the milk collector from the pump motor before pouring. Assemble the valve and milk collector correctly. Attach the flange and pump motor tightly so there is no air leakage or loss of suction."
+    },
+    {
+      "id": "quick-03",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Assembling the pump",
+      "text": "Parts include the flange cover, 24 mm flange, pump motor, milk collector, diaphragm, valve, milk collector lid, and magnetic charging cable. Assemble only clean, dry parts and make sure every seal is seated correctly."
+    },
+    {
+      "id": "quick-04",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Nipple measuring and flange size",
+      "text": "A properly fitted flange maximizes milk output, helps prevent nipple damage, and supports effective pumping. Measure the nipple and select the matching insert: the guide shows 15 mm inserts for about 11-13 mm nipples, 17-21 mm inserts for about 13-20 mm nipples, and the 24 mm flange without an insert for about 20-23 mm nipples. Recheck comfort and fit during pumping."
+    },
+    {
+      "id": "quick-05",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Wearing",
+      "text": "Center the nipple in the flange tunnel and press the flange to the breast with no gap. Secure the pump in the bra so it stays firmly against the breast. Correct nipple alignment is important for comfort and performance."
+    },
+    {
+      "id": "quick-06",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Pump controls and indicators",
+      "text": "Controls include Mode Selection, Decrease Suction Level, Increase Suction Level, and On/Off or Pause/Continue. Long-press the power button to turn the pump on or off; short-press it to pause or continue. Battery full is solid white; low battery with one cycle left is solid red; charging flashes green; fully charged is solid green."
+    },
+    {
+      "id": "quick-07",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Transfer milk",
+      "text": "Press and hold the on/off button for 2 seconds until the indicator light turns white and flashes. Separate the pump motor from the milk collector. With the bottle lid facing upward, open the silicone seal on the pouring spout and pour out the milk."
+    },
+    {
+      "id": "quick-08",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Washing and disinfection",
+      "text": "Detach the flange from the pump, remove the diaphragm, disassemble the milk collector, and separate the valve. The pump motor and charging parts are non-washable. Wash milk-contact parts, keep parts away from the heated container edges, and dry accessories thoroughly before reassembly. Do not put parts directly into a microwave; use a suitable microwave steam sterilizer bag according to its instructions."
+    },
+    {
+      "id": "quick-09",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "Charging case",
+      "text": "Use a USB Type-C charging cable to charge the charging case. The four charging-case lights indicate approximately 25%, 50%, 75%, and 100% battery from left to right. Short-press the charging-case control to show or hide the battery indicator."
+    },
+    {
+      "id": "quick-10",
+      "source": "Air 1 Quick Start Guide V1.9",
+      "page": 1,
+      "section": "App recommendation and support",
+      "text": "The product is recommended for use with the Momcozy app. Download the app from an official app store. For product questions, the quick guide lists support@momcozy.com."
+    },
+    {
+      "id": "manual-05-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 5,
+      "section": "01.Product Introduction",
+      "text": "Table of Contents 01.Product Introduction 02.Importantsafetyinformation&Cautions 03.Indicationsfor Use/Intended Use 04.Contraindications 05.Safety Information 06.Product Description 07. Operating Instructions 08.Transfer 09.Storage Conditions 10. Specification 11.Maintenance and Replacement Parts 12.Declaration of Conformity 13. Trouble Shooting 14. Disposal 15.WARRANTY 16.EMC information 17.Reporting Adverse Events 18.Travel or International Use Statement 19.Manufacturer Information 20.FCCWarning 21.App Quick User Guide"
+    },
+    {
+      "id": "manual-06-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 6,
+      "section": "01.ProductIntroduction",
+      "text": "01.Product Introduction The Momcozy Wearable Breast Pumpis intended tobe used by lactating women to express and collect milk from their breasts.The Momcozy Wearable Breast Pump forms a vacuum around the nipple to express breast milk.The milk is collected in a milk collector.The device includes stimulation mode, expression mode,and mixed mode. In stimulation mode,the breast pump begins with a quick and short sucking pattern to getyour milk to start flowing. In expression mode, the breast pump begins with a slow and long sucking pattern for milk expression, sucking more deeply and more slowly. In mixed mode,the breast pump begins with a quick and short sucking pattern, followed by a slow and long sucking pattern.To prevent milk from flowing into physically separates the milk-contacting pathway from the vacuum system. The deviceis intended for a single user. 02.lmportant safety information&Cautions Thewarning signs and graphic symbols in the manual are intended to enable you to use the product safely and correctly and to prevent harm to you and others.Warning marks and graphic symbols are described as follows: Warning/precautions symbols A warning alerts thereader about a situation that, if not avoided,could result in death or serious injury. It may also describe potential serious adverse Warning reactionsand safetyhazards. Indicating ahazard alertthat warns thereader of apotentially hazardous situation which,if not avoided,may result in minor or moderate injury to the user orpatient or damage to the equipment or Caution other property.It may alsobe used to alert against unsafe practices.This includes the special care"
+    },
+    {
+      "id": "manual-07-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 7,
+      "section": "Pile Limit 5 layers",
+      "text": "necessary for the safe and effective use of the device and the care necessary to avoid damage to a device that may occur as a result of use or misuse. Contraindications are conditions under which the Contraind- device should notbeusedbecausetheriskofuse clearly outweighs any possible benefit.There may ications be persons for whom the device should not be used becauseoftheirhealthstatus. Indicates theneed forattention,if notattention Notes may lead to incorrect use of the product or property device damage. Symbol description Keep Dry Pile Limit 5 layers ■ Applied part of typeBF SN Serial Number LOT Batch code Refer to instruction manual. Distribution packages shall notbe exposed to sunlight The first number 2: Protected against solid foreign objects of 12.5mm diameter and greater.The second number 2:Protected IP22 against vertically falling water drops when enclosure titled up to 15° Disposalinaccordancewith Directive 2002/96/EC(WEEE)"
+    },
+    {
+      "id": "manual-08-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 8,
+      "section": "03.Indications for Use/lntended use",
+      "text": "Thisdevicehasnotbeen tested foruse in anMRenvironment and should notbe used exposed to MRenvironmentswhile patientsare wearing the device.Keep it outside the MRI scanner room. FCC 03.Indications for Use/lntended use [Indicationsfor Use/lntendeduse] The Momcozy Wearable Breast Pump (model:BP334) is a powered breast from their breasts.The device is intended for a single user. [Intended users] Canread andunderstand the usermanual ThePATIENT is anintended OPERATOR [Patient Population] Lactating women [Intended use environment] Home Healthcare Environment 04. Contraindications: Noknown Contraindications 05.Safetyinformation When using electrical products,especially if children are present,the following basicsafetyinformation should alwaysbe maintained"
+    },
+    {
+      "id": "manual-09-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 9,
+      "section": "Page 9",
+      "text": "5.1 Warning 1)Do not use this device if you have a cardiac pacemaker,implanted defibrillator,or otherimplanted metallic orelectronic device.Such use could cause electricalinterference,or death. 2) This breast pump is not intended for use by persons (including children) withreduced physical,sensory or mental capabilities,or lack of experience and knowledge. Such persons can only use this breast pump if they are appliance by a personresponsible for theirsafety. 3)Danger:Toreduce theriskof electrocution: Always unplug electrical devices immediately after charging. Do not use it while bathing, showering, driving or swimming. Do not reach for electrical product that has fallen into water, please unplug thepower adapter from wall outlet immediately. 4) The Momcozy Wearable Breast Pump is a personal care item and for hygienicreasons should never be shared between users or resold from one person to another. Either of these actions will void the warranty. 5) If you are a mother who is infected with Hepatitis B, Hepatitis C or Human Immunodeficiency Virus (HIV), pumping breast milk using the Momcozy Wearable Breast Pumpwillnotreduce orremove theriskof transmitting the virus to your baby through your breast milk. 6)Close supervision is necessary whenproduct is used near children or invalids.Do not allow children or pets to play with the motor unit, packaging materials oraccessories. 7) Use product only for intended use as described in this manual. thoserecommended bymanufacturer. 9) Check the power adapter before charging, never use the damaged power adapter. 10) Never leave product unattended while charging. Do not use the product whilecharging. 11) Keep the product and all accessories away from heated surfaces. 12) Never use it while sleeping or drowsy."
+    },
+    {
+      "id": "manual-09-2",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 9,
+      "section": "Page 9",
+      "text": "duct unattended while charging. Do not use the product whilecharging. 11) Keep the product and all accessories away from heated surfaces. 12) Never use it while sleeping or drowsy. 13) Do not operate where aerosol spray products are being used or oxygen is being administered. 14) Do not use the device around explosive or flammable material, in an MRI environment,in a hyperbaric chamber,ornear a fireplace orradiant heater."
+    },
+    {
+      "id": "manual-10-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 10,
+      "section": "30min each time, the intervalbetween two uses shallbe at least 5min to",
+      "text": "15)Avoid strangulationresulting from Charging Cable. 16) Users are not allowed to repair the product. If you do so,your warranty becomes invalid.Forrepairs, sent to the manufacturer or a designated franchise distributor. yourbreast,in order toreleasethevacuum. 18)Powered breast pumps that are designed for single users should never be rentedorshared. 19) Never use the breast pump while you are pregnant, as pumping can induce labor. 20)Please make sure that your skin of breast must be intact and healthy before use.If you feel overheated,please turn off the device. In order to avoid high temperature burn, the maximum continuous use shall not exceed 30min each time, the intervalbetween two uses shallbe at least 5min to allow the device to cool down. 21)For product service life (i.e. working life) The device has no shelf life, and the service life of the product is 500 hours. The expected operating life of the washable parts is one to three months. Please check whether the product can run normally before use.Use beyond the service life may lead to the degradation ofproductperformance.Such as,if the product cannot control the vacuum correctly,excessive vacuum maycause injuries. 22) Keep the product away form children or pets, and avoid swallowing small parts. 23)Contact your healthcare professional orbreastfeeding specialist forhelp.(If the user's baby is in the NICU, this should be noted.) 5.2 Cautions: ·Do not place or store where the product can fall or be pulled into a bathtub, sink or pool. ·Do not place or drop the product into water or other liquids. ·Do not immerse in anyliquid for any reason or subject the unit to extreme shocks, such as dropping the pump. ·Do not continue pumping for more than five minutes at a time if you do not"
+    },
+    {
+      "id": "manual-11-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 11,
+      "section": "06. Product description",
+      "text": "betweenthebreastand theflange. ·If irritation or discomfort occurs,discontinue use and see a health care provider. ·If the power adapter casing or wiring becomes loose,separated,or frayed, stop use of thepower adapterimmediately and contact the device manufacturer.Stop using the device immediately if you note any smoke or burning from the pump unit or power adapter. ·Before each use visually inspect the individual components for cracks,chips, tears,discoloration,or deterioration.In the event that damageto the device is observed, please discontinue use until the parts have been replaced. Statement:If you feel excessive warmth from the Wearable breast pump while Notes: Avoid direct sunlight to the main unit. 06. Product description The product is mainly composed of main unit and milk collection set etc. Fig.1 unit description"
+    },
+    {
+      "id": "manual-12-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 12,
+      "section": "24mm Flange",
+      "text": "Description Of Breast Pump Unit NO. Item Description 1 Flange Cover All of these components make 24mm Flange up the milk collection set 2 3 Pump Motor Main unit 4 Diaphragm All of these components make 5 Milk Collector up the milk collection set 6 Valve 7 Magnetic Charging Cable 8 Milk Collector The milk collection set Other Accessories Included Flange Insert Quick Start Guide User manual Flange Size Ruler"
+    },
+    {
+      "id": "manual-13-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 13,
+      "section": "Fig.2 control panel",
+      "text": "? Fig.2 control panel NO. Buttons and LEDs Functions 1 Mode Selection 2 Decrease suctionlevel 3 Increase suctionlevel On/Off;Pause/Continue: Long-press to turn on/ off the device; Short-press to pause/ continue the device Indicatorlight: Battery full: solid white 5 Low battery (one cycle left): solid Charging: flashing green Fully charged: solid green"
+    },
+    {
+      "id": "manual-14-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 14,
+      "section": "Fig.3 control panel",
+      "text": "? Fig.3 control panel 2 Description of Pump Charging case Short-press:on/off the battery indicator light. Charging Case Battery Indicators ·From left to right,the four lights indicate 25%,50%,75%, and 100% battery respectively. ·Charging one bar:cycles from 1st to 2nd to 3rd to 4th continuously. Charging two bars:1st bar solid,cycles 2 from 2nd to 3rd to 4th. ·Charging three bars: 1st and 2nd bars solid, cycles from 3rd to 4th flashing. ·Charging four bars:1st,2nd,and 3rdbars solid, 4th bar continuously flashing. ·When fully charged,all fourindicators remain solid. ·When the first battery indicator barflashes, it means the battery is low Pump Charging Indicators 1.light shining:Chaging the breast pump 3 2.light on:Fully charging the breast pump 3.light off: Stop charging"
+    },
+    {
+      "id": "manual-15-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 15,
+      "section": "07. Operating Instructions",
+      "text": "07. Operating Instructions 7.1Poweringthe Breast Pump Two charging methods for the breast pump: 7.1.1 Charging Case Use the charging case to charge your breast pump byfirst aligning thepump charging port with the port inside the case.Release the pump,allwing it to fully settle into the slot, and observe the charging indicator flashing green. 7.1.2 Charging Cable Charge your breast pump using the magnetic charging cable (included) and a 5V/2A adapter (not included).Please purchase the power adapter by yourself before charging. Make sure to buy the power adapter which matches the USB 2.0 interface, and please make sure the input power of the power adapter is 7.2Chargingbattery ·Please charge the breast pump using the above two methods before first battery. When the breast pump power indicator turns red,it means the battery is low, and there are about 30 minutes of use time left.Please charge the device in time. fully charged,it can be used about 6 sessions (about 180 minutes) of pumping,30 minutesper session."
+    },
+    {
+      "id": "manual-16-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 16,
+      "section": "About 3hours",
+      "text": "(Batteryfull:solidwhite) (Low battery: solid red) Fig.4 ：The charing case comes with USB-C Charging Cable(included)but not with a power adapter.Please purchase thepower adapterbyyourself before charging.When the case is charged,the battery indicator bar increases one by one, from one bar to four bars, until the pump is fully charged. The display of four bars indicates that the battery is full. Fully charge the case only About 3hours Fullycharge the case and twobreast About 5 hours pumpsinsidethecase Unplug the power adapter from the socket,disconnect the charging cable from the power adapter and main unit after charging is completed. Warning ·The charging cableis onlyused to connectbetween thepoweradapter not connect to other equipment,otherwise,it may cause electric shock accident! ·If the power adapter casing becomes loose, separated, or frayed, stop the useof thepower adapterimmediately and contact the manufacturer of power adapter. ·If the charging cable is damaged,broken or cracked, stop the use of the charging cableimmediately and contact themanufacturer toreplace anew one (See the last page of this manual for contact information)."
+    },
+    {
+      "id": "manual-17-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 17,
+      "section": "7.3.Cleaninganddisinfection",
+      "text": "·Stop using the deviceimmediatelyifyou note any smoke orburning from the pumpunit or power adapter. Using thewrong type of adapter orpurchasing apoor-quality adaptermay reduce the device's safety,and may damage your property and health.Make Notes: ·After fully charging the battery,if the working time of the battery is shorter unit and battery. ·When the product is not used for a long time, the battery will discharge slowly.In order to avoid battery damage due to low voltage fora long time, pleasechargethedeviceeverythreemonths. 7.3.Cleaninganddisinfection 7.3.1.Generaldescription/requirement health and development.Pumping your milk is one way to provide breast milk can grow quickly in breast milk or breast milk residue that remains on pump parts.Following these steps can help prevent contamination and protect your baby from infection.Ifyour baby was born prematurely orhas otherhealth for pumping breast milk safely. 1)BEFOREEVERYUSE 2) Inspect and assemble a clean pump kit. Clean pump motor with disinfectant wipes. Clean and disinfect allparts that come into contact withbreast andbreast milkbefore you use the breast pump."
+    },
+    {
+      "id": "manual-18-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 18,
+      "section": "a. Please Wash your hands well with soap and water for 20 seconds.",
+      "text": "3) AFTEREVERY USE Store milk safely:Use breast milk storage bags or clean,food-grade containers to store expressed breast milk.Make sure the containers are made of glass or plastic and have tight-fitting lids,and label them with the date and time,and immediatelyplace them in a refrigerator,freezer,or cooler bag with ice packs. Clean pumping area: Clean the surface of thepump motor with disinfectant wipes. 4)Parts that need to be cleaned and disinfectedt pump for the first time and after every use.Cleaning and sanitizing are not the same.It's necessary to clean and disinfect the pump separately, so as to keep moms and babies safe and maintain the breast pump's performance. ·Parts contacting with the breast milk and breast skin: parts of milk collection set, including Flange, Diaphragm,Valve, and Milk Collector. ·Parts that only contact the breast skin:Flange. 5)Before cleaning/disinfection: a. Please Wash your hands well with soap and water for 20 seconds. b.Please disassemble all parts as follows: Fig.5 Fig.6 1)Detach the flange from the 2) Grip the protrusions to detach pump the milkcollectorfrom the main unit."
+    },
+    {
+      "id": "manual-19-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 19,
+      "section": "Page 19",
+      "text": "Fig.7 Fig.8 3)Remove the diaphragm from 4)Disassemble the milk collector. the milk collector. Caution Never put the main unit, charing case,charging cable or the adapter (If you have purchased an adapter) in water or a dishwasher, as this causes permanent damage to these parts. Fig.9 5)Separate the valve"
+    },
+    {
+      "id": "manual-20-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 20,
+      "section": "7.3.2.Cleaning and disinfecting parts contacting with thebreastmilk",
+      "text": "7.3.2.Cleaning and disinfecting parts contacting with thebreastmilk Step1:Cleaning Please manually clean the device!The safety of using a dishwasher to clean and disinfect this product has not been verified. Non-washable Washableparts parts 额 Fig.10 Fig.11 Warning Do not use antibacterial or abrasive cleaning agents to clean thebreast pump parts as this may cause damage. 1)Preparethebelow items: √Soap and hot water √Drinkable-quality water √Clean wash basin used onlyfor infant feeding items √Cleanbrushused onlyforinfantfeeding items √Unused dishtowel orpaper towel 2) Rinse: Rinse parts of milk collection set and any other feeding items by holding them under running water toremove the remaining milk or dirt.The water can bewarm or cold,which depends onyour preference."
+    },
+    {
+      "id": "manual-21-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 21,
+      "section": "√waterfor3~5minutes.",
+      "text": "Fig.12 3) Wash milk collection parts: Place parts of the milk collection set in a clean wash basin which used only for infant feeding items.Do not wash directly in the sink as it may contain √germsthatcould contaminatetheseitems. Soak parts of the milk collection set in warm 40-60°C (104-140°F),soapy √waterfor3~5minutes. Using a clean brush only for infant feeding items to scrub items. Fig.13 them in fresh water in a separate basin that is used only for cleaning infant feeding items. If there has dirt remained,repeat step 3 and re-rinse until there is no visible dirt. 5) Air-dry thoroughly: Place parts of the milk collection set,wash basin, and bottle brush on a clean,unused dish towel or paper towel in an area protected from dirt and dust. Do not use a dish towel to rub or pat items becausethatmaytransfergermstotheitems!"
+    },
+    {
+      "id": "manual-22-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 22,
+      "section": "hand with soap and warm water. If your baby is less than 3 months old, was",
+      "text": "Fig.14 6)Clean wash basin and bottle brush:Rinse the wash basins and brush well and allow them to air-dry after each use.Wash them every few days by hand with soap and warm water. If your baby is less than 3 months old, was HIV) or medical treatment (such as chemotherapy for cancer),wash basin andbottlebrushaftereveryuse. After Cleaning: For extra germ removal, disinfect the parts of milk collection set, wash basin, and bottle brush at least once daily after they have been cleaned.Items can be disinfected using boiling water witha disinfection setting.Disinfection is especially important if your baby isless than 3 months old, was born prematurely, or has a weak immune system due to illness or medical treatment. For the disinfection of milk contact parts, please refer to step 2. Step 2:Disinfection Caution: ·Do not sterilize milk collection parts in UV sterilizer. High temperature(> 110°℃)will shorten their service life and cause safety hazards. ·Do not sterilize the Flange Cover,Pump motor,Charging Cable and Charging bag. 1)Prepare the below items: -A household pot -Drinkable-quality water -Clean tongs -Sterilizationbag"
+    },
+    {
+      "id": "manual-23-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 23,
+      "section": "<100C",
+      "text": "Disinfectionmethods: momco Zy 5-10 min OR <100C 00 Keepparts away from theheated container'sedges. Fig.15 Methods1:Disinfection withboiling water: Caution 1)During disinfection withboiling water,prevent thebottle or other parts from touching the sides of the pot.This can cause irreversible product deformation ordamage. 2)Place the disassembled milk collection set in the pot and fill the pot with enough water to cover the components to disinfect.Let the water boil for 5-10 minutes,make sure the parts do not touch the sides of the pot. Fig.16"
+    },
+    {
+      "id": "manual-24-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 24,
+      "section": "Page 24",
+      "text": "3)Remove itemswithcleantongs. Fig.17 4) Air-dry thoroughly. Fig.18 Methods2:Or Sanitise in microwave (Once per day after use) aution Must be use momcozy Microwave Steam Sterilizer Bags in microwave in accordance with theinstructions on thebags. ·Be carefulwhen removing the bag from the microwave,as thehot water and steam insidewillbe extremelyhot. ·Onlysterilizepartsdeemedsafeformicrowavesterilization. ·The steam bag is intended only for microwave-safe plastics. ·Do not place the steam bag on the metallic grill or dish"
+    },
+    {
+      "id": "manual-25-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 25,
+      "section": "1.Wash and rinse every item in cleanwater.",
+      "text": "·Heating for a longer duration thanrecommended may cause distortion. ·Follow the manufacturer's instructions foryour microwave. ·Do not use it in a conventional oven. Before disinfection,make sure you have a cleaned milk collection set,bottle brushes, and wash basins using the methods above. Disinfect all items in contact with milk(even the bottle brush and wash basin!) by using one of the following methods. 1.Wash and rinse every item in cleanwater. 2.Pour 2 oz(60mL.)of water into the bag.Without the appropriate amount of water, the parts could distort in shape. 3.Separate all pump parts and place bottles and pump parts into the bag. Then sealthebagtightly.DONOTOVERLOAD! microwavedoes not have a turntable.Sterilizing Timetable: 1.5Min for 1100W+ 3Minfor 800-1100W 5Minfor500-750W 5.Allow thebag to coolfor atleast 3minbefore removing it from the microwave. 6.Discharge any remaining water through the drain spout beforeremoving the sterilized parts,Rinse the bag before the next use. 2 oz (60mL) Fig.19 Fig.20"
+    },
+    {
+      "id": "manual-26-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 26,
+      "section": "1.5Min for 1100W+",
+      "text": "1.5Min for 1100W+ 3Minfor800-1100W 5Minfor500-750W Fig.21 Fig.22 Fig.23 Fig.24 Step3:Storesafely Store dry items safely until needed.Ensure the clean pump parts,bottle brushes, and wash basins have air-dried thoroughly before storing.Items must be completely dry to help preventing germs and mold from growing.Store dry itemsina clean,protected areatoprevent contamination. 1. Wash hands: Wash hands well with soap and water. 2.Put back together: Put together the clean, dry pump parts. 3.Store safely: Place reassembled pump parts and other feeding items, wash basin,and dry bottle brush in a clean, protected area such as inside a closed kitchen cabinet that is used only to store clean dishes."
+    },
+    {
+      "id": "manual-27-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 27,
+      "section": "7.3.3.Clean/Disinfecttheotherparts",
+      "text": "7.3.3.Clean/Disinfecttheotherparts The shell of the main unit need to be cleaned and disinfected for the first time and after each use.The other parts, do not come into contact with the human body nor the milk during pumping, and only need to be cleaned when it is dirty. Cleaning/disinfecting theitems at room temperature5°℃~40°℃ as below: Preparethebelowitems: -Disinfection -70% isopropyl alcohol wipes -Clean soft cloth Cleaning method: 1. Before performing this cleaning procedure, wash your hands with hand disinfection first. 2.Remove all residues from the main unit and/or charging cable using a clean soft cloth. 3. Take a piece of 70% isopropyl alcohol wipes to swab on the parts until no visible contaminants remain. 4.Dry the device byplacing it at room temperaturefor10min to evaporate the residual cleaningreagent solution on theproduct. Disinfectionmethod: Cleaning the shell of themain unit as the above method before disinfection. 1. Disinfect the shell of the main unit with a soft cloth dampened with the 70% isopropanolfor 3 minutes. 2. Dry it by placing the main unit at room temperature for 10min to evaporate the residual disinfection solution. 7.4.Directionforuse 7.4.1.Preparation before use caution Wash hands with soap and water, inspect and assemble a clean pump kit. 1.Select Flange Size 17/19/21mmflange insert.If the provided flange and flange insert are not"
+    },
+    {
+      "id": "manual-28-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 28,
+      "section": "Fig. 25 select right size",
+      "text": "the right size,you can purchase various sizes of flanges and flange insert on Amazon or Momcozy's official website.Type\"momcozy\" in the search bar and find the flange size and flange insert that fits you. UPTO 20 7 UP TO 18) UPTO 23 UPTO 26 EL O1 d UPTO 16) 15 19 21 24 27 Fig. 25 select right size Nipple Measurement 11-13 13-15 15-17 17-20 20-23 23-26 26-29 (mm) Flange (mm) 15 17 19 21 24 27 30 Fig.26Flange size chart 2.Stimulatethe Nipple a)Stimulate your nipple to get a full size (do not skip this step!). b)Place the nipple into the smallest hole you can comfortablyfit into without forcing it. c)Select thehole that cancomfortably fit theverybase of your nipple. d)Get your measurement based on the sizing chart. 3.Testthe Flange Fit A.To find the suitable size flange,first,you need to make sure you place the flange in theright place on yourbreast."
+    },
+    {
+      "id": "manual-29-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 29,
+      "section": "4.GETTHE RIGHT BRA",
+      "text": "B.Please press the flange on your breast until there is no gap. Make sure your nipple is right in the middle of the flange. Areola Too Small Good Fit Too Large Nipple Measure Nipple Base Fig. 27 Too Small Too small: During pumping, if your nipple continues to rub against the inner wall of the flange, then this flange is too small for you. Good Fit Suitable fitting:During pumping,if your nipple moves smoothly without rubbing or touching the inner wall of the flange,and almost no areola is sucked inside, then this flange is right for you. Too Large Too large: During pumping,if a large area of areola is sucked inside,then this flange is too big for you. 4.GETTHE RIGHT BRA Has a flap Madeofstretchy fabric Full coverage No underwire or padding Fig. 28"
+    },
+    {
+      "id": "manual-30-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 30,
+      "section": "5.RECOMMENDPOSTURE",
+      "text": "Fig. 29 Fig. 30 NO GAP IFITMOVES When you put the pump inside your If you feel the pump moves during bra,the silicone Flange of this pump use,please tightenyourbra strap to should be firmly pressed against adjustthepumpagain,orchoose your skin without a gap. anotherbra. 5.RECOMMENDPOSTURE Caution Always sit or stand upright while pumping to prevent the milk from leaking. This pump is not to be used when lying down or sleeping to ensure the proper orientation ismaintained during use. POSTURE Make sure the pump and the milk collector alwaysstay ataverticalangle. Otherwise, the milk will spill out. Fig.31 right posture"
+    },
+    {
+      "id": "manual-31-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 31,
+      "section": "7.4.2.Assembling the Pump",
+      "text": "7.4.2.Assembling the Pump Caution Make sure you have cleaned and disinfected the parts of the breast pump that comeinto contactwithmilkorbreast. Warning ·Be careful, when you have disinfected the breast pump parts by boiling them,they can be very hot.To prevent burns,only start assembling the breast pump when disinfected parts have cooled down. ·Wash your hands thoroughly with soap and water before you touch breast pump parts and breasts to prevent contamination.Avoid touching the inside of milk collection set. Notes: ·Correct placement of the Flange,Diaphragm,Milkcollector,Valve, ·Before each use visually inspect the individual components for cracks,chips, tears,discoloration,or deterioration.In the event that damage to the device is observed,please discontinue useuntil theparts havebeenreplaced. Wash your hands thoroughly with soap and water, then assembling the pump as follows: Fig.32 Fig.33 1)Washyourhands thoroughly Assemble thevalve tothe milk with soap and water. collector and ensure it isproperly installed."
+    },
+    {
+      "id": "manual-32-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 32,
+      "section": "7.4.3.Pumping instructions",
+      "text": "Fig.34 Fig.35 Assemble the milk collector and 4)Assemble thediaphragmtothemilk collector. ensure the front and back covers First, cover the upper and lower lids installed correctly. of the diaphragm.then install it into the milk collector,making sure it is properly in place. Fig.36 Fig.37 5)Assemble the pump motor and 6).Attach the flange to the pump theflange tightly and properly to motor，Ensure the flange is of the ensure no air leakage. correct size,properly installed. The breast pump is now ready for use. 7.4.3.Pumping instructions Warning ·Before you remove the pump body from your breast, always switch off the breast pump to release the vacuum. ·Do not continue pumping for more than 5 minutes at a time if you do not"
+    },
+    {
+      "id": "manual-33-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 33,
+      "section": "1.Alignment",
+      "text": "·If the process becomes very uncomfortable or painful, stop using the pump andconsult yourhealthcareprofessional. Caution Monitoring milk level during pumping to ensure overfill does not occur. 1.Alignment a.Before pumping, please make sure the pump is pressed tightly on your breast without a gap. Fig.38 centered in the flange tunnel. You may need tobend forward. c.After you've aligned, look through the flange to confirm your nipple is centered before pumping.The tip of your nipple should NOT touch the top, sides or bottom of the flange tunnel.If it does, try again. First Perspective Correct Alignment Incorrect Alignment Milk expression Try again Fig.39"
+    },
+    {
+      "id": "manual-34-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 34,
+      "section": "2.SecurePumpin Bra",
+      "text": "Note: Correct nipple alignment is key to comfort expression and performance. discomfort. 2.Secure Pumpin Bra Secure Pump in place by bra, taking care to keep Pump pressed firmly against breast. If necessary,tighten bra to keep Pump securely in place and start pump. Fig.40 3.Starting pumping Do not slide pump directly into your bra,follow step-by-step instructions. Disconnect from Charger before use. A. Turn on the pump Long press the On/ Off button to turn On/ Off the pump. Short press the On/ Off button to Pause/ Continue the pump. B.Select the mode Modes:Stimulation Mode &Expression Mode &Mixed Mode Short press the Mode Selection button to changefrom 3 modes. C.Select thevacuum level Momcozy pump has 15 vacuum pressure settings for each mode, giving you control over what feels comfortable and works most efficiently in all modes. Once you feel uncomfortable,use the Increase/Decrease button to adjust the vacuum pressure. Always ensure you are pumping at a comfortable level. Tip:A higher vacuum pressure does not always mean a higher volume of milk."
+    },
+    {
+      "id": "manual-35-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 35,
+      "section": "4.Removethepump",
+      "text": "ensure you are pumping at a comfortable level.If you don't feel suction,please checkthe pump is assembled correctly. caution ·Pump should not be used while lying down, engaging in strenuous activities orperforming activitieswithriskof harm. ·Using a breast pump should not cause pain. Do not try to express with a vacuum pressure setting that is toohigh or uncomfortable.If excessive discomfort or pain is felt during pumping,stop pumping,break the seal around your nipple and discontinue the session. 4.Removethepump Useyour finger tobreak theseal between theflange and the breast tissue. Lean slightly forward to remove the pump from the breast after your pumping session,then keep the flange opening side up to prevent milk from pouring over. Fig.41 Werecommend the user to stop the pumping session once the expressed milk volume of the milk collector approaches 180 ml to avoid overflow. Warning Refrigerate or freeze expressed milk immediately or keep it at a temperature of 16°℃ ~25°℃ for a maximum of 2-4 hours before you feed your baby."
+    },
+    {
+      "id": "manual-36-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 36,
+      "section": "7.5.Storing breastmilk",
+      "text": "7.5.Storing breastmilk 7.5.1.Proper Storage of Breast Milk Following therecommended storage andpreparation techniques can maintain the safety and quality of expressed breast milk for the baby's health. These are general guidelines for storing human milk at different temperatures. Various factors affect how long human milk can be stored safely.Suchfactors include milk volume,room temperature when milkis expressed,temperature fluctuations in the refrigerator and freezer, and cleanliness of the environment. Storingbreastmilk after expressing: ·Refrigerate or chill milk right after it is pumped, if possible.You can put it in the refrigerator,place it in a cooler or insulated cooler pack, or freeze it in small (2 to 4 ounce)batchesfor later feedings. ·Use breast milk storage bags or clean,food-grade containers to store expressed breast milk. Make sure the containers are made of glass or plastic and have tight-fitting lids. --Avoid bottles with the recycle symbol number 7,which indicates that the container maybemadeofBPA-containingplastic. ·Remove air before sealing. ·Lay bags flat to freeze. To prevent sticking between bags, please separate the bags with paper towels. ·Never store breast milk in disposable bottle liners or plastic bags that are not intended for storingbreast milk. ·Gently swirl the container to mix the cream part of the breast milk that may rise to the top back into the rest of the milk.Do not shake the milk. This can make some of the milk's valuable parts break down. ·Freshly expressed or pumped milk can be stored:"
+    },
+    {
+      "id": "manual-36-2",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 36,
+      "section": "7.5.Storing breastmilk",
+      "text": "y rise to the top back into the rest of the milk.Do not shake the milk. This can make some of the milk's valuable parts break down. ·Freshly expressed or pumped milk can be stored: Storage Locationand Temperatures Typeof Countertop Breast Milk 77°F (25° C) or Refrigerator Freezer colder (room 40° F (4° C) 0°F (-18° C) or colder temperature) Freshly Within 6 months is best Expressed or Up to 4 Hours Up to 4 Days Up to 12 months is Pumped acceptable"
+    },
+    {
+      "id": "manual-37-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 37,
+      "section": "Up to 1 Day",
+      "text": "Thawed, Up to 1 Day NEVERrefreeze Previously 1-2 Hours (24 hours) human milk after it Frozen hasbeen thawed Leftover from a Feeding p!p Kqeq) Use within 2hours after the baby is finished feeding not finish the bottle) These guidelines are for healthyfull-term babies only and may vary for premature or sickbabies.Checkwith yourhealth careprovider. Storage tips: ·Clearlylabelthe storagecontainerwith thedateitwas expressed,including your child’s name, if you are giving the milk to a childcare provider.Talk to storing breast milk. Date all breast milk and use the oldest breast milk first. ·Do not store breast milk close to the door of therefrigerator or freezer.This willhelpprotecting thebreast milkfrom temperature changesfrom the door opening and closing. ·If you don't think you will use freshly expressed breast milk within 4 days, freeze it right away. This will help to protect the quality of the breast milk. ·When freezingbreastmilk: Store small amounts to avoid wasting milk that might notbefinished.Store in 2 to4 ounces or the amount offered at onefeeding. Leave about oneinch of space at the top of the container because breast milk expands as it freezes. ·Breast milk can be stored in an insulated cooler with frozen ice packs for up to 24 hours when you are traveling.At your destination, use the milk right away, store it in the refrigerator, or freeze it. 7.5.2.Safe thawing of Breast Milk ·Always thaw the oldest breast milk first. Remember first in,first out. Over time,the quality of breast milk can decrease."
+    },
+    {
+      "id": "manual-38-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 38,
+      "section": "·If you thaw breast milk in the refrigerator, use it within 24 hours. Start",
+      "text": "·There are several ways to thaw your breast milk. ·In therefrigerator overnight. ·Set in a container of warm or lukewarm water. ·Under lukewarm running water. ·Never thaw or heat breast milk in a microwave.Microwaving can destroy nutrients in breast milk and create hot spots, which can scald a baby's mouth. ·If you thaw breast milk in the refrigerator, use it within 24 hours. Start counting the 24 hours when the breast milk is completely thawed,not from the time when you took it out of thefreezer. ·Once breast milk is brought to room temperature or warmed,use it within 2 hours. ·Never refreeze breast milk after it has thawed. 7.6. Feeding Expressed Breast Milk ·Breast milk does not need tobe warmed.It can be served room temperature or cold. If you decide to warm thebreast milk,here are some tips: ·Keep the container sealed. ·Place the sealed container into a bowl of warm water or hold it under warm, but not hot,running water for a few minutes. ·Test the milk's temperature before feeding it to your baby by putting a few drops on your wrist. ·Do not heat breast milk directly on the stove or in the microwave. ·Swirl the breast milk to mix the fat,which may have separated. ·If your baby does not finish the bottle, use the leftover milk within 2 hours after the baby finishesfeeding.After 2 hours,leftover breast milk should be discarded. 08.Transfer When traveling,please use the charging cable provided and adjust it to the right power source for your current location.Before boarding the plane,please Temperature:-20 to 60°C/-4to 140°F"
+    },
+    {
+      "id": "manual-39-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 39,
+      "section": "Ambient Pressure:70 - 106kPa",
+      "text": "Relative Humidity:15% -90% Ambient Pressure:70 - 106k Pa 09. Storage conditions How to store the pump ·Short-term storage ·Please keep the breast pump out of direct sunlight.Store the breast pump and its accessories in a safe, clean, and dry place, and away from children ·Long-term storage First, please charge the pump before long-term storage in which way the service life of this pump can be prolonged. Second, keep it in a place away from direct sunlight in avoidance of discoloration.Third,clean and dry the washablepartsbeforestoringthem ·Relative Humidity: 15% -90%RH ·Ambient Pressure: 70-106 k Pa ·Generally 30 minutes is required to warm from the minimum storage temperature and/or cool from themaximum storage temperature until is is readyfor operation 10. Specification 10.1 The pump Model No. BP334 Name Momcozy Wearable Breast Pump Adapter Input: 100-240Vac, 50/60Hz; Power Output:5V- 2A (Charge through providedUSB 2.0/ requirements Magnetic Charging cable and self-purchased power adapter) Power supply DC3.8V/1800m Ah Rechargeablelithiumbattery Rated power 10W"
+    },
+    {
+      "id": "manual-40-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 40,
+      "section": "Stimulation mode:-75mmHg~-165mmHg",
+      "text": "Suction modes Stimulation mode,expression mode,and mixedmode Stimulation mode:-75mm Hg~-165mm Hg Vacuumrange Expressionmode:-112mm Hg~-285mm Hg Mixed mode:-75mm Hg~-285mm Hg Stimulationmode:54~90cycle/min Cycle speed Expressionmode:25~60cycle/min Mixed mode:45~82 cycle/min Dimensions 125mm×110mm×61mm Weight 260g (Pump) Product use life 500 hours Noise level ≤45dBA Type of protection Internallypowered equipment againstelectric shock Degree of protection Type BF applied part (Flange) against electric shock Operating Temperature:0 °C to 40°℃;Humidity:15% to 90%RH, conditions Atmospheric pressure:70 k Pa to 106 k Pa Transportation &storage Atmospheric pressure:70 k Pa to 106 k Pa environment Battery charging time 150minutes Battery usage 180minutes time"
+    },
+    {
+      "id": "manual-41-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 41,
+      "section": "10.2The charging case",
+      "text": "10.2The charging case Input: 100-240Vac, 50/60Hz; Power Output:5V--- 3A(Charge through provided USB 2.0/ requirements Type-C Charging cable and self-purchased power adapter) Power supply DC3.8V/5500m Ah Rechargeablelithium battery Dimensions 238mm*189mm*87mm Weight 450g Battery Fully charge the case only about 3hours usage time Fully charge the case and two breast pumps inside the case about5hours 11. Maintenance and Replacement Parts The device contains no user serviceable partsinside:Opening or tampering with this device will void the warranty. In the event the device requires repair, it should be returned to the medical equipment company or to retailer directly. Modification of any kind is prohibited. The MANUFACTURER will make available on request circuit diagrams, component part lists,descriptions,calibration instructions,or otherinformation that will assist SERVICE PERSONNEL torepair those parts of the device that are designated by the MANUFACTURER asrepairable by the SERVICE PERSONNEL. When the product is not used for a long time, the battery will longtime,please charge thedeviceeverythree months. Warning The replacement of lithium batteries byinadequately trained personnel could result in a hazard. Do not clean or maintain the device while the device is in use or while charging."
+    },
+    {
+      "id": "manual-42-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 42,
+      "section": "12. Declaration of conformity",
+      "text": "12. Declaration of conformity Shenzhen Root Innovation Technology Co.,Ltd.declares that the device conforms to the following standards IEC60601-1, IEC60601-1-2, IEC60601- 1-11,ISO10993-5,ISO10993-10,ISO10993-23. 13. Trouble shooting Problems Causes&solutions ·If let-down has not yet occurred, considerleaving thepumponbreastforlongerperiodof time to observe for possible delayed let-down. Note: Initial Pump does milklet-down time is unique for eachperson and notwork varies by many factors. ·Check nipple alignment, pause the pump, and remove it from breast.Realign the pump as described below. ·You may not have the correct Flange size. ·Pause the pump and remove it from breast.Realign Milk it correctly. does not ·You may also separate the pump from the flange to flow realign.Then,centeryour nipplein the flange tunnel and bring the pump to your breast. ·Pause the pump and remove it from breast.Realign Need to it correctly. realign ·You may also separate the pump from the flange to realign.Then,center your nipple in the flange tunnel and bring the pump to your breast. Feel ·If you're experiencing excessive discomfort,please discomfort try the following: while ·Make sure to press the pump firmly against your pumping breast during Stimulation mode."
+    },
+    {
+      "id": "manual-43-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 43,
+      "section": "·The Pump has 15 suction settings.Press the increase",
+      "text": "·Tighten bra to make sure the pump is held firmly against the breast. ·Decrease suction level. ·Realign the pump. ·You may be pumping for too long. This pump shuts offautomaticallyafterrunningfor30minutes. ·You may not have the correct flange size.Stop and see a medical professional or breastfeeding specialist. ·The Pump has 15 suction settings.Press the increase buttonto increase suctionlevel. ·Check the condition of your washable parts.They Decreased should be replaced after three months of use. (low)pump ·If that does not work, try the following: 1.Check connections between all washable parts to suction ensure all are secure. 2. Visually inspect all washable parts and replace them if damaged. 3. Check that power is on. 4. Press the Pump securely against the breast. Stop Short press On/Off button will pause the pump,press pumping again will resume. ·If the issue persists, then break the seal by inserting Pump does a finger between the breast tissue and the flange. not stop Then long press the On/Off button to turn the pump pumping off. ·Dry the pump immediately.Prop the pump upright Pump or with charger port down and suction controls up, Charger and let it air dry overnight. Do not use the pump or gets wet charger within 24 hours. ·Contact Customer Care. Remark: If the above methods still do not solve the problem, please contact the manufacturer,seethelast pageforcontact information."
+    },
+    {
+      "id": "manual-44-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 44,
+      "section": "14.Disposal",
+      "text": "14.Disposal At the end of theproduct life cycle,do not throw this product into the normal household garbage,but bring it to a collection point for therecycling of electronic equipment and battery.Waste effects on the environment.Improper disposal may lead to the accumulation of harmful toxins in the air, water, and soil, which is harmful to human health.you have obligation to dispose of the device correctly. Consult your municipal authorityforinformation about disposal. 15. WARRANTY Please contact the manufacturer in case of a claim under the warranty,the contact information please refer to lastpage of this user manual. If you have to send the unit,enclose a copy of your receipt with clear statement of defect description. The warranty terms are asbelow: 1) In case of a warranty claim, the date of purchase has to be proven by means of thesalesreceiptorinvoice. device orfor thereplacementparts. 3)Thefollowing cases are excluded under the warranty ·Alldamages whichare arisen due toimproper treatment,e.g. nonobservance of the userinstruction. ·All damages which are arisen due to repairs or tampering by the customer or unauthorized third parties. ·Damages which are arisen during transport from the manufacturer to the consumer or during transport to the service center. ·Accessories which are subject to normal wear and tear. ·Device damage due toprivately disassemble devices. excluded even if the damage to the unit is accepted as a warranty claim."
+    },
+    {
+      "id": "manual-45-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 45,
+      "section": "16.EMC information",
+      "text": "16.EMC information warning ·Using cell phone or microwave oven, HF surgical equipment, magnetic resonanceimaging or otherradioradiant equipment near thisproduct may cause malfunction. ·Use of this equipment adjacent to or stacked with other equipment should be avoided because it could result in improper operation.If such use is necessary,this equipment and the other equipment shouldbe observed to verifythattheyareoperatingnormally. ·PortableRFcommunications equipment(including peripherals such as antenna cables and external antennas) should be used no closer than 30 cm (12 inches) to any part of the Momcozy Wearable Breast Pump, including cables specified by themanufacturer.Otherwise,degradation of the performanceof thisequipmentcouldresult. ·Use of accessories,transducers and cables other than those specified or provided by the manufacturer of this equipment could result in increased electromagneticemissionsordecreased electromagneticimmunityofthis equipment andresult inimproper operation. caution 1)Security,antitheft,and radiofrequency identification(RFID)devices.Some electromagnetic anti-theft systems and metal detectors such as those used at entrances or exits of department stores,libraries,and other public places, and airport security screening devices may affect the Momcozy Wearable places.Additionally,RFID devices,which are often used to read identification payment counters at stores and loan desks at libraries,may also affect the Momcozy Wearable Breast Pump.Please do notuse Momcozy Wearable Breast Pump near these places. If you have to go through one of these devices,turn off your Momcozy Wearable Breast Pump.Before each usage, checking the status of your Momcozy Wearable Breast Pump to ensure it can operate normally."
+    },
+    {
+      "id": "manual-46-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 46,
+      "section": "1000±10mm",
+      "text": "2)Using short-wave diathermy,microwave diathermy, or therapeutic ultrasound diathermy(all nowreferred toas diathermy)and electrocautery devices near this product may cause malfunction or lead to loss of performance,please do not use Momcozy Wearable Breast Pump near this equipment. Alistof cables andmaximumlengthof cablesisasfollows: Cablesname Cablelength Whethershielding Charging cable 1000±10mm No Guidance and manufacturer's declaration-electromagneticemissions Themodel BP334 is intended for use in the electromagnetic environment specified below.The customer or the user of the model BP334 should assure that they are used in such an environment. Compliance Electromagnetic Emissionstest environment-guidance The model BP334 use RF energy only RF emissions for itsinternalfunctions.Therefore,its Group 1 CISPR 11 RF emissions are very low and are not likely to cause any interference in nearby electronic equipment. RF emissions Class A CISPR11 Harmonic The model BP334 is suitable for use in emissions Not applicable allestablishments,including domestic IEC 61000-3-2 establishments and those directly connected tothepubliclow-voltage power supply network that supplies Voltage buildingsused for domesticpurposes. fluctuations/ Not applicable flicker emissions IEC 61000-3-3"
+    },
+    {
+      "id": "manual-47-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 47,
+      "section": "±8 kV contact",
+      "text": "Guidance&Declaration-electromagneticimmunity Themodel BP334 isintended for usein the electromagnetic environment specifiedbelow.The customer ortheuser of the model BP334 should assure that it is used in such an environment. IEC60601 Compliance Electromagnetic Immunity test test level level environment-guidance Electrostatic ±8 kV contact ±8 kV contact Floors should be wood, discharge ±2 kV, ±4 kV, ±2 kV, ±4 kV, concrete or ceramic tile. (ESD) ±8 kV, ±15 kV ±8 kV, ±15 kV If floors are covered IEC air air with synthetic material, 61000-4-2 therelative humidity should be at least 30 %. Electricalfast trasient/burst Not applicable Not applicable IEC Mains power quality 61000-4-4 should be that of a typical commercial or hospital environment. Surge IEC 61000-4-5 Not applicable Not applicable Mains power quality should be that ofa Voltage dips, typical commercial or short hospital environment.If interruptions the user of the model andvoltage BP334requires variations on Not applicable Not applicable continued operation during power mains power supply interruptions,it s input lines IEC recommended that the 61000-4-11 model BP334 be powered from an uninterruptiblepower supply or a battery."
+    },
+    {
+      "id": "manual-48-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 48,
+      "section": "(50/60 Hz)",
+      "text": "Power frequency (50/60 Hz) 30A/m 30 A/m magneticfield IEC Power frequency 61000-4-8 magneticfields/ Proximity magnetic CW 8A/mfor CW 8A/mfor fields should be at 30k Hz Pluse 30k Hz Pluse Proximity levels characteristic of modulation modulation magnetic a typical location in a 2.1k Hz,65A/m 2.1k Hz,65A/m fields typical commercial or for 134.2MHz for 134.2MHz IEC hospitalenvironment. Pluse Pluse 61000-4-39 modulation modulation 50k Hz,7.5A/m 50k Hz,7.5A/m for 13.56MHz for 13.56MHz NOTE UT is the a.c.mains voltage prior to application of the test level. Guidance&Declaration-Electromagneticimmunity The modelBP334 isintended for usein the electromagnetic environment specified below.The customer or the user of the model BP334 should assure that they are used in such an environment. IEC60601 Compliance Electromagnetic Immunity test test level level environment-guidance Portable RF communications equipment (including peripherals such as Conducted Not applicable Not applicable antenna cables and RF IEC external antennas) 61000-4-6 should be used no closer than 30 cm (12 inches) to any part of"
+    },
+    {
+      "id": "manual-49-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 49,
+      "section": "10V/m",
+      "text": "10V/m 10V/m 80 MHz to 2.7 80 MHz to 2.7 GHz GHz 385MHz-5785 385MHz-5785 MHz Test MHz Test the model BP334, specifications specifications including cables for for specified by the Radiated RF ENCLOSURE ENCLOSURE manufacturer. PORT PORT IEC Otherwise, IMMUNITY to IMMUNITY to 61000-4-3 degradation of the RF wireless RF wireless performance of this communica- communica- tion equipment could tion result. equipment equipment (Refer to table (Refer to table 9 of IEC 9 of IEC 60601-1-2:201 60601-1-2:201 4+A1:2020) 4+A1:2020)"
+    },
+    {
+      "id": "manual-50-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 50,
+      "section": "17. Reporting adverse events",
+      "text": "17. Reporting adverse events Med Watch is the Food and Drug Administration's (FDA) program for reporting serious reactions,product quality problems,therapeutic inequivalence/failure, products,medical devices, dietary supplements,infant formula,and cosmetics. to a medicalproduct,you are encouraged to take thereporting form to your doctor.Your health care provider canprovide clinical information based on your medical record that can help FDA evaluate your report. However, we understand that for a variety of reasons, you may not wish to NOT required to report to the FDA.In these situations,you may complete the Online Reporting Formyourself. You will receive an acknowledgement from FDA when yourreport is received. Reports are reviewed by FDA staff. You will be personally contacted only if we need additional information. Submitting Adverse Event ReportstoFDA Use one of the methods below to submit voluntary adverse event reports to the FDA: 1)Report Online at:www.accessdata.fda.gov/scripts/medwatch/index. cfm?action=reporting.home 2) Consumer Reporting Form FDA 3500B.Follow the instructions on the form to either fax or mailit in for submission.For help filling out the form, see Med Watch Learn.The formis available at:www.fda.gov/downloads/ aboutFDA/reportsmanualsforms/forms/ucm349464.pdf 3) Call FDA at 1-800-FDA-1088 to report by telephone is available at:www.fda.gov/downloads/aboutFDA/reportmanualsforms/ forms/ucm163919.pdf"
+    },
+    {
+      "id": "manual-51-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 51,
+      "section": "18. Travel or international use",
+      "text": "18. Travel or international use statement: Since theperformance of the Momcozy Wearable Breast Pump maybe affected bythe external environment,inviewof theuncertainty andinstability of the travel environment,please consult the airline for advice about carrying or using this pump on the plane. The Momcozy Wearable Breast Pump can be internationally used, but it must be used and stored in the environment specified in this user manual, and please make sure theinput power of your power adapteris AC100-240V 50/60 Hz and output power is DC 5V 2A(forcharging case,DC 5V 3A), and please make sure you have a converterto convert to thepropervoltage of the target country.To ensure that the Momcozy Wearable Breast Pump is not affected during carrying,please check the following itemsbefore use to ensure it can operate normally: ·Check the Momcozy Wearable Breast Pump to ensure that it is free from damage and cracks. ·Before each usage, check the status of your Momcozy Wearable Breast Pump to ensure it can operate normally. If there is any abnormality, please stop using it. 19. Manufacturer information Manufacturer:Shenzhen Root Innovation Technology Co.,Ltd. #2-201,Floor 2,Hasee Computer Building,No.2 Beier Rd,Bantian Street, Longgang,Shenzhen,Guangdong,China,518129 E-mail:support@momcozy.com If assistance in setting up,using,or maintaining the device when needed or to report unexpected operation orevents,please contact us. MADEINCHINA 20. FCC Warning This device complies with part 15 of the FCC Rules.Operation is subject to the following two conditions: (1) This device may not cause harmful interference, and(2)this device must accept any interference received,including interference thatmay causeundesired operation."
+    },
+    {
+      "id": "manual-52-1",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 52,
+      "section": "for a Class B digital device,pursuant to part 15 of the FCC Rules.These limits",
+      "text": "for a Class B digital device,pursuant to part 15 of the FCC Rules.These limits Note:This equipment has been tested and found to comply with the limits are designed toprovidereasonableprotection against harmful interference inaresidential installation.This equipment generates,uses and can radiate radio frequency energy and, if not installed and used in accordance with the instructions,may cause harmfulinterference to radio communications. However, there is no guarantee that interference will not occur in a particular installation.If this equipment does causeharmful interference toradio or televisionreception,which can be determined by turning the equipment off and on,the useris encouraged to try to correct theinterference by one or more of the following measures: —Reorientorrelocatethereceivingantenna. —Increase the separation between the equipment and receiver. —Connect the equipment into an outlet on a circuit different from that to which the receiver is connected. —Consult the dealer or anexperienced radio/TV technicianforhelp. Note: The Grantee is not responsible for any changes or modifications not expressly approved by the partyresponsible for compliance.such modifications could void theuser's authority to operate the equipment. 21.App Quick User Guide Before using a newbreast pump,please refer to the following user instructions on the App, which can help you to use the product more effectively. Step 1: either Google Play Store or App Store.The app is compatible with iOS 13 and Android 8.0 or higher versions.Please connected to the device. Step 2: After installation,pleaseregister your account.If youhave a Momcozy account, log in. Step3:"
+    },
+    {
+      "id": "manual-52-2",
+      "source": "Air 1 User Manual V2.0 (Model BP334)",
+      "page": 52,
+      "section": "for a Class B digital device,pursuant to part 15 of the FCC Rules.These limits",
+      "text": "e with iOS 13 and Android 8.0 or higher versions.Please connected to the device. Step 2: After installation,pleaseregister your account.If youhave a Momcozy account, log in. Step3: Please ensure you have turned on Bluetooth on your phone, and thebreast pump should remain powered.Add devices through the\"+\"and\"Devices\" buttons. After connecting,use the app to control thebreast pump."
+    }
+  ]
+}
