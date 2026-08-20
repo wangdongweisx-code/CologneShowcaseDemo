@@ -369,12 +369,17 @@ struct LactationPlanDemoView: View {
         case .generating:
             generationProgressView(in: size)
             generationTips(in: size)
+            if generationProgress < 1 {
+                disabledGenerationButton(in: size)
+                    .transition(.opacity)
+            }
             tapArea(
                 CGRect(x: 20, y: 754, width: 362, height: 78),
                 label: "Got It",
                 enabled: generationProgress >= 1,
                 in: size
             ) {
+                guard generationProgress >= 1 else { return }
                 move(to: .firstPlan)
             }
 
@@ -1693,6 +1698,28 @@ struct LactationPlanDemoView: View {
             y: frame.minY + frame.height * 183 / 874
         )
         .allowsHitTesting(false)
+    }
+
+    private func disabledGenerationButton(in size: CGSize) -> some View {
+        let frame = fittedDesignFrame(in: size)
+        let scale = frame.width / 402
+        let buttonWidth = 362 * scale
+        let buttonHeight = frame.height * 52 / 874
+        let buttonX = frame.minX + 201 * scale
+        let buttonY = frame.minY + frame.height * 790 / 874
+
+        return ZStack {
+            Capsule()
+                .fill(Color(red: 0.68, green: 0.68, blue: 0.70))
+
+            Text("Got It")
+                .font(.system(size: 17 * scale, weight: .semibold))
+                .foregroundStyle(Color.white.opacity(0.88))
+        }
+            .frame(width: buttonWidth, height: buttonHeight)
+            .position(x: buttonX, y: buttonY)
+            .allowsHitTesting(false)
+            .accessibilityHidden(true)
     }
 
     private func generationTips(in size: CGSize) -> some View {

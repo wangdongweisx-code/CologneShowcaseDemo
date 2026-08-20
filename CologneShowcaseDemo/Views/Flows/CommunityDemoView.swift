@@ -726,6 +726,33 @@ struct CommunityExactFinalDemoView: View {
                             .scaledToFit()
                             .frame(width: proxy.size.width)
 
+                        // The approved long Figma export captured the sticky
+                        // "Join & Post" CTA over the first article photo. The
+                        // real CTA below is already pinned to the viewport, so
+                        // redraw the clean source photo to avoid a duplicate
+                        // button appearing as the feed scrolls.
+                        if let firstPostImage = FigmaScreenImageLoader.image(
+                            named: postPreviewAssets[0]
+                        ) {
+                            Image(uiImage: firstPostImage)
+                                .resizable()
+                                .interpolation(.high)
+                                .scaledToFill()
+                                .frame(width: 330 * scale, height: 215 * scale)
+                                .clipped()
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 24 * scale,
+                                        style: .continuous
+                                    )
+                                )
+                                .position(
+                                    x: 217 * scale,
+                                    y: postImageY[0] * scale
+                                )
+                                .allowsHitTesting(false)
+                        }
+
                         exactButton(
                             label: "Previous community step",
                             x: 38, y: 84, width: 60, height: 60,
@@ -777,12 +804,23 @@ struct CommunityExactFinalDemoView: View {
                             }
 
                             if selectedStatus == target.label {
+                                let ringSize = target.size - 3
+                                let ringTop = target.y - ringSize / 2
+                                let visibleRingHeight = min(
+                                    ringSize,
+                                    statusComposerTopY - ringTop
+                                )
+
                                 Circle()
                                     .strokeBorder(Color.brandPlum, lineWidth: 2 * scale)
                                     .frame(
-                                        width: (target.size - 3) * scale,
-                                        height: (target.size - 3) * scale
+                                        width: ringSize * scale,
+                                        height: ringSize * scale
                                     )
+                                    .mask(alignment: .top) {
+                                        Rectangle()
+                                            .frame(height: visibleRingHeight * scale)
+                                    }
                                     .position(x: target.x * scale, y: target.y * scale)
                                     .allowsHitTesting(false)
                             }
@@ -937,15 +975,20 @@ struct CommunityExactFinalDemoView: View {
     private var statusTargets: [(label: String, x: CGFloat, y: CGFloat, size: CGFloat)] {
         [
             ("pumping", 73, 351, 86),
-            ("tired", 298, 351, 84),
-            ("need company", 178, 419, 120),
-            ("hands full", 80, 431, 72),
-            ("can’t sleep", 305, 435, 81),
+            ("tired", 298, 350, 84),
+            ("need company", 178, 417, 120),
+            ("hands full", 80, 443, 72),
+            ("can’t sleep", 305, 442, 81),
             ("music on", 95, 565, 121),
-            ("baby sleeping", 225, 530, 100),
+            ("baby sleeping", 225, 529, 100),
             ("cluster feeding", 315, 580, 82)
         ]
     }
+
+    // The composer is baked over the bottom of the final two bubbles in the
+    // Figma export. Selection rings stop at its top edge instead of drawing
+    // over the composer artwork.
+    private let statusComposerTopY: CGFloat = 589
 
     // These targets follow the image and action-row positions baked into the
     // approved 402 × 1791 Figma export. Keeping them aligned prevents invisible
