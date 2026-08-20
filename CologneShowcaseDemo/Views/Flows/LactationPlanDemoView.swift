@@ -6,6 +6,7 @@ import SwiftUI
 /// an approved `plan-*` Figma export from the Cologne demo file.
 struct LactationPlanDemoView: View {
     @ObservedObject var store: DemoStore
+    let onFinalPageChange: (Bool) -> Void
 
     @State private var stage: PlanStage = .home
     @State private var homeCardHighlighted = false
@@ -86,6 +87,15 @@ struct LactationPlanDemoView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            onFinalPageChange(stage == .data)
+        }
+        .onChange(of: stage) { _, newStage in
+            onFinalPageChange(newStage == .data)
+        }
+        .onDisappear {
+            onFinalPageChange(false)
+        }
         .task(id: stage) {
             switch stage {
             case .generating:

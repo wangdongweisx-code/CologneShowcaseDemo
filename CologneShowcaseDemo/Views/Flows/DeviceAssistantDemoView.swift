@@ -15,7 +15,7 @@ struct DeviceAssistantDemoView: View {
             case .pairing: "V3 found nearby"
             case .welcome: "Welcome to Beginner’s Guide"
             case .guidance: "Unbox & Inspect"
-            case .assistant: "CozyAI Device Assistant"
+            case .assistant: "Cozie AI"
             }
         }
     }
@@ -111,7 +111,7 @@ struct DeviceAssistantDemoView: View {
                     .foregroundStyle(Color.brandInk)
                 ForEach(["How do I know the flange fits?", "What if the suction feels weak?", "Help with connection issues."], id: \.self) { prompt in
                     Button(prompt) {
-                        store.showToast("CozyAI response simulated locally")
+                        store.showToast("Cozie AI response simulated locally")
                     }
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.capsule)

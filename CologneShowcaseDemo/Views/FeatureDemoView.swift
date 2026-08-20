@@ -8,6 +8,7 @@ struct FeatureDemoView: View {
     @State private var exitPresentation: ExitPresentation = .hidden
     @State private var hasPresentedExit = false
     @State private var exitTask: Task<Void, Never>?
+    @State private var isCustomFinalPage = false
     @State private var isSetupVideoPlaying = false
     @State private var isDeviceHowToExpanded = true
     @State private var isDeviceWarningExpanded = true
@@ -30,9 +31,13 @@ struct FeatureDemoView: View {
         GeometryReader { proxy in
             ZStack {
                 if feature == .lactationPlan {
-                    LactationPlanDemoView(store: store)
+                    LactationPlanDemoView(store: store) { isFinalPage in
+                        isCustomFinalPage = isFinalPage
+                    }
                 } else if feature == .lactationTimeline {
-                    TimelineDemoView(store: store)
+                    TimelineDemoView(store: store) { isFinalPage in
+                        isCustomFinalPage = isFinalPage
+                    }
                 } else if isCommunityIntroStep {
                     CommunityIntroDemoView(
                         store: store,
@@ -112,6 +117,9 @@ struct FeatureDemoView: View {
             } else {
                 resetVoiceRecording()
             }
+            configureExitButton()
+        }
+        .onChange(of: isCustomFinalPage) { _, _ in
             configureExitButton()
         }
         .task(id: stepIndex) {
@@ -1156,7 +1164,7 @@ struct FeatureDemoView: View {
                                 HStack {
                                     ProgressView()
                                         .tint(Color.brandPlum)
-                                    Text("CozyAI is searching…")
+                                    Text("Cozie AI is searching…")
                                         .font(.system(size: 13 * scale))
                                         .foregroundStyle(Color.brandPlum.opacity(0.7))
                                     Spacer()
@@ -1304,6 +1312,23 @@ struct FeatureDemoView: View {
             FigmaScreenView(assetName: currentStep.assetName)
                 .id(currentStep.assetName)
                 .frame(width: frame.width, height: frame.height)
+
+            // Replace the rasterized Agent title with the approved product name.
+            LinearGradient(
+                colors: [
+                    Color(red: 1.000, green: 0.956, blue: 0.958),
+                    Color(red: 0.997, green: 0.930, blue: 0.935)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .frame(width: 238 * scale, height: 48 * scale)
+            .position(x: frame.midX, y: frame.minY + 102 * scale)
+
+            Text("Cozie AI")
+                .font(.brandMedium(17 * scale, relativeTo: .headline))
+                .foregroundStyle(Color.brandInk)
+                .position(x: frame.midX, y: frame.minY + 102 * scale)
 
             // The approved frame already contains a static composer. Cover
             // that rasterized control before placing the real TextField so
@@ -1465,18 +1490,23 @@ struct FeatureDemoView: View {
         .accessibilityLabel("Back to selling points")
     }
 
+    private var isFinalFeaturePage: Bool {
+        switch feature {
+        case .lactationPlan, .lactationTimeline:
+            return isCustomFinalPage
+        default:
+            return stepIndex == feature.demoSteps.count - 1
+        }
+    }
+
     private func configureExitButton() {
         exitTask?.cancel()
 
-        // The custom plan/timeline flows manage their own internal stages.
-        // Voice Log uses the original Figma step sequence and still keeps the
-        // exhibition exit control available after its first highlighted step.
-        guard feature == .lactationPlan
-                || feature == .lactationTimeline
-                || feature == .voiceLog
-                || feature == .community
-                || !currentStep.hidesExitButton else {
+        // The Exit Demo control is introduced only when a feature reaches its
+        // final showcase page. Every fresh arrival expands it for two seconds.
+        guard isFinalFeaturePage else {
             exitPresentation = .hidden
+            hasPresentedExit = false
             return
         }
 
@@ -2215,7 +2245,7 @@ private struct AIAgentClient {
         }
         let body: [String: Any] = [
             "system": """
-                You are CozyAI Device Assistant for the Momcozy Air 1 wearable breast pump.
+                You are Cozie AI for the Momcozy Air 1 wearable breast pump.
                 Give concise, practical troubleshooting guidance in the user's language.
                 Do not claim to diagnose medical conditions. For pain, injury, fever, bleeding, or urgent
                 symptoms, advise the user to stop pumping and contact a qualified healthcare professional.

@@ -6,6 +6,7 @@ import UIKit
 /// source illustrations and article photography remain image assets.
 struct TimelineDemoView: View {
     @ObservedObject var store: DemoStore
+    let onFinalPageChange: (Bool) -> Void
 
     @State private var stage: TimelineStage = .home
     @State private var privacyAccepted = true
@@ -33,6 +34,15 @@ struct TimelineDemoView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            onFinalPageChange(stage == .result)
+        }
+        .onChange(of: stage) { _, newStage in
+            onFinalPageChange(newStage == .result)
+        }
+        .onDisappear {
+            onFinalPageChange(false)
+        }
         .confirmationDialog("Timeline options", isPresented: $showsMoreMenu, titleVisibility: .visible) {
             Button("Stage Knowledges") { move(to: .knowledge) }
             Button("Personalize Timeline") { move(to: .privacy) }
