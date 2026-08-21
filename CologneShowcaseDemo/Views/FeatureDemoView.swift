@@ -17,6 +17,8 @@ struct FeatureDemoView: View {
     @State private var agentDraft = ""
     @State private var agentMessages: [DeviceAgentMessage] = []
     @State private var isAgentResponding = false
+    @State private var humanSupportStage: DeviceHumanSupportStage = .inactive
+    @State private var humanSupportRequestText = "Human Customer Service"
     @State private var voiceRecordingSeconds = 1
     @State private var isVoiceRecording = false
     @State private var isVoiceRecordingReady = false
@@ -56,7 +58,11 @@ struct FeatureDemoView: View {
                     }
 
                     if isDeviceAgentStep {
-                        deviceAgentChat(in: proxy.size)
+                        if humanSupportStage.isActive {
+                            deviceHumanSupportFlow(in: proxy.size)
+                        } else {
+                            deviceAgentChat(in: proxy.size)
+                        }
                     }
 
                     ForEach(Array(currentStep.targets.enumerated()), id: \.offset) { _, target in
@@ -126,6 +132,9 @@ struct FeatureDemoView: View {
             guard !Task.isCancelled else { return }
             advance()
         }
+        .task(id: humanSupportStage) {
+            await autoAdvanceHumanSupportFlow()
+        }
         .onDisappear {
             exitTask?.cancel()
             voiceRecordingTask?.cancel()
@@ -171,6 +180,10 @@ struct FeatureDemoView: View {
     }
 
     private func goBack() {
+        if humanSupportStage.isActive {
+            humanSupportStage = .inactive
+        }
+
         if isDeviceAgentStep, let returnStepIndex = deviceAgentReturnStepIndex {
             deviceAgentReturnStepIndex = nil
             withAnimation(.easeInOut(duration: 0.18)) {
@@ -1373,6 +1386,17 @@ struct FeatureDemoView: View {
         // start a hands-free conversation without presenting it.
         isAgentInputFocused = suggestedPrompt == nil
         agentMessages.append(DeviceAgentMessage(role: .user, text: question))
+
+        if isHumanSupportRequest(question) {
+            humanSupportRequestText = question
+            isAgentInputFocused = false
+            isAgentResponding = false
+            withAnimation(.easeInOut(duration: 0.24)) {
+                humanSupportStage = .offer
+            }
+            return
+        }
+
         isAgentResponding = true
         agentConnectionStatus = AIAgentClient.isConfigured ? .connecting : .local
         let conversation = agentMessages
@@ -1401,6 +1425,375 @@ struct FeatureDemoView: View {
             }
             isAgentResponding = false
         }
+    }
+
+    // MARK: - Human customer service demo
+
+    private func isHumanSupportRequest(_ text: String) -> Bool {
+        let normalized = text
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .lowercased()
+        return normalized == "human customer service" || normalized == "人工服务"
+    }
+
+    private func autoAdvanceHumanSupportFlow() async {
+        let transition: (delay: Duration, next: DeviceHumanSupportStage)? = switch humanSupportStage {
+        case .connecting: (.seconds(1.6), .assigned)
+        case .assigned: (.seconds(1.8), .joined)
+        case .joined: (.seconds(2.4), .conversation)
+        case .conversation: (.seconds(3.4), .ended)
+        case .inactive, .offer, .ended: nil
+        }
+
+        guard let transition else { return }
+        let current = humanSupportStage
+        try? await Task.sleep(for: transition.delay)
+        guard !Task.isCancelled, humanSupportStage == current else { return }
+        withAnimation(.easeInOut(duration: 0.28)) {
+            humanSupportStage = transition.next
+        }
+    }
+
+    private var humanSupportPreviousQuestion: String {
+        agentMessages.reversed().first {
+            $0.role == .user && !isHumanSupportRequest($0.text)
+        }?.text ?? "How do I know the flange fits?"
+    }
+
+    private var humanSupportPreviousAnswer: String {
+        agentMessages.reversed().first {
+            $0.role == .assistant
+        }?.text ?? "If the flange fits correctly, pumping should feel comfortable and gentle — not painful or pinching. Your nipple should move freely in the center of the tunnel without excessive rubbing, and only a small amount of areola should be pulled in during pumping."
+    }
+
+    @ViewBuilder
+    private func deviceHumanSupportFlow(in size: CGSize) -> some View {
+        let frame = humanSupportDesignFrame(in: size)
+        let scale = frame.width / 393
+
+        ZStack {
+            LinearGradient(
+                colors: [
+                    Color(red: 1.0, green: 0.91, blue: 0.93),
+                    Color(red: 1.0, green: 0.97, blue: 0.97),
+                    Color(red: 0.99, green: 0.92, blue: 0.93)
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottom
+            )
+
+            Button {
+                store.userDidInteract()
+                goBack()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 19 * scale, weight: .medium))
+                    .foregroundStyle(Color.brandInk)
+                    .frame(width: 44 * scale, height: 44 * scale)
+            }
+            .buttonStyle(.bordered)
+            .buttonBorderShape(.circle)
+            .tint(Color.white.opacity(0.72))
+            .position(
+                x: frame.minX + 38 * scale,
+                y: frame.minY + 84 * scale
+            )
+
+            Text("CozyAI Device")
+                .font(.custom(Font.aeonikMediumName, size: 16 * scale, relativeTo: .headline))
+                .foregroundStyle(Color.brandInk)
+                .position(
+                    x: frame.minX + 196.5 * scale,
+                    y: frame.minY + 84 * scale
+                )
+
+            humanSupportContent(scale: scale)
+                .frame(width: 361 * scale, height: 590 * scale, alignment: .topLeading)
+                .position(
+                    x: frame.minX + 196.5 * scale,
+                    y: frame.minY + 425 * scale
+                )
+
+            humanSupportInputBar(scale: scale)
+                .frame(width: 361 * scale, height: 56 * scale)
+                .position(
+                    x: frame.minX + 196.5 * scale,
+                    y: frame.minY + 764 * scale
+                )
+
+            Text("AI-generated, not professional advice")
+                .font(.custom(Font.aeonikRegularName, size: 12 * scale, relativeTo: .caption))
+                .foregroundStyle(Color.brandInk.opacity(0.30))
+                .position(
+                    x: frame.minX + 196.5 * scale,
+                    y: frame.minY + 809 * scale
+                )
+        }
+        .frame(width: frame.width, height: frame.height)
+        .frame(width: size.width, height: size.height, alignment: .top)
+        .clipped()
+        .transition(.opacity)
+    }
+
+    private func humanSupportDesignFrame(in size: CGSize) -> CGRect {
+        let width = size.width
+        return CGRect(x: 0, y: 0, width: width, height: width * 852 / 393)
+    }
+
+    @ViewBuilder
+    private func humanSupportContent(scale: CGFloat) -> some View {
+        ZStack(alignment: .topLeading) {
+            switch humanSupportStage {
+            case .offer:
+                humanSupportPriorContext(scale: scale)
+                humanSupportUserBubble(humanSupportRequestText, scale: scale)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .offset(y: 270 * scale)
+                humanSupportOfferCard(scale: scale)
+                    .offset(y: 342 * scale)
+
+            case .connecting:
+                humanSupportPriorContext(scale: scale)
+                humanSupportUserBubble(humanSupportRequestText, scale: scale)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .offset(y: 270 * scale)
+                humanSupportConnectingCard(scale: scale)
+                    .offset(y: 342 * scale)
+
+            case .assigned:
+                humanSupportPriorContext(scale: scale)
+                humanSupportUserBubble(humanSupportRequestText, scale: scale)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .offset(y: 270 * scale)
+                humanSupportAssignedCard(scale: scale)
+                    .offset(y: 342 * scale)
+
+            case .joined:
+                humanSupportPriorContext(scale: scale)
+                humanSupportUserBubble(humanSupportRequestText, scale: scale)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .offset(y: 270 * scale)
+                humanSupportDivider("Sarah joined the conversation.", scale: scale)
+                    .offset(y: 342 * scale)
+                humanSupportAgentMessage(
+                    "Hi! I’m Sarah, from Momcozy support. I can see your conversation — how can I help you?",
+                    scale: scale
+                )
+                .offset(y: 384 * scale)
+
+            case .conversation:
+                humanSupportAgentMessage("Hi! I’m Sarah. How can I help you today?", scale: scale)
+                humanSupportUserBubble(humanSupportPreviousQuestion, scale: scale)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .offset(y: 93 * scale)
+                humanSupportAgentMessage(humanSupportPreviousAnswer, scale: scale)
+                    .offset(y: 165 * scale)
+
+            case .ended:
+                humanSupportAgentMessage("Is there anything else I can help you with?", scale: scale)
+                humanSupportUserBubble("No, that's all. Thank you!", scale: scale)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .offset(y: 93 * scale)
+                humanSupportDivider("Conversation ended", scale: scale)
+                    .offset(y: 168 * scale)
+
+            case .inactive:
+                EmptyView()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func humanSupportPriorContext(scale: CGFloat) -> some View {
+        Text("pumping.")
+            .font(.custom(Font.aeonikRegularName, size: 18 * scale, relativeTo: .body))
+            .foregroundStyle(Color.brandInk)
+            .offset(y: -2 * scale)
+
+        if let image = FigmaScreenImageLoader.image(named: "device-human-context") {
+            Image(uiImage: image)
+                .resizable()
+                .interpolation(.high)
+                .scaledToFill()
+                .frame(width: 160 * scale, height: 213 * scale)
+                .clipShape(RoundedRectangle(cornerRadius: 24 * scale, style: .continuous))
+                .offset(y: 33 * scale)
+        }
+    }
+
+    private func humanSupportUserBubble(_ text: String, scale: CGFloat) -> some View {
+        Text(text)
+            .font(.custom(Font.aeonikRegularName, size: 16 * scale, relativeTo: .body))
+            .foregroundStyle(Color.brandInk)
+            .padding(.horizontal, 16 * scale)
+            .padding(.vertical, 13 * scale)
+            .background(
+                Color.brandInk.opacity(0.04),
+                in: UnevenRoundedRectangle(
+                    topLeadingRadius: 24 * scale,
+                    bottomLeadingRadius: 24 * scale,
+                    bottomTrailingRadius: 8 * scale,
+                    topTrailingRadius: 24 * scale
+                )
+            )
+            .fixedSize(horizontal: false, vertical: true)
+    }
+
+    private func humanSupportOfferCard(scale: CGFloat) -> some View {
+        VStack(spacing: 24 * scale) {
+            VStack(spacing: 8 * scale) {
+                humanSupportAvatar(size: 48 * scale)
+                Text("Connect you with a human customer service agent?")
+                    .font(.custom(Font.aeonikRegularName, size: 18 * scale, relativeTo: .body))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(Color.brandInk)
+                Text("Service hours: 9:00 AM–6:00 PM")
+                    .font(.custom(Font.aeonikRegularName, size: 16 * scale, relativeTo: .body))
+                    .foregroundStyle(Color.brandInk.opacity(0.44))
+            }
+
+            Button {
+                store.userDidInteract()
+                withAnimation(.easeInOut(duration: 0.22)) {
+                    humanSupportStage = .connecting
+                }
+            } label: {
+                Text("Contact an agent")
+                    .font(.custom(Font.aeonikMediumName, size: 14 * scale, relativeTo: .subheadline))
+                    .foregroundStyle(Color.white)
+                    .frame(maxWidth: .infinity, minHeight: 48 * scale)
+                    .background(Color.brandPlum, in: Capsule())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Contact a human customer service agent")
+        }
+        .padding(20 * scale)
+        .frame(maxWidth: .infinity)
+        .background(Color.white.opacity(0.62), in: RoundedRectangle(cornerRadius: 32 * scale))
+        .shadow(color: Color.brandPlum.opacity(0.08), radius: 15 * scale)
+    }
+
+    private func humanSupportConnectingCard(scale: CGFloat) -> some View {
+        VStack(spacing: 24 * scale) {
+            VStack(spacing: 8 * scale) {
+                ProgressView()
+                    .tint(Color.brandPlum)
+                    .controlSize(.large)
+                Text("Connecting you with customer service…")
+                    .font(.custom(Font.aeonikRegularName, size: 18 * scale, relativeTo: .body))
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(Color.brandInk)
+            }
+
+            Button {
+                store.userDidInteract()
+                withAnimation(.easeInOut(duration: 0.22)) {
+                    humanSupportStage = .offer
+                }
+            } label: {
+                Text("Cancel request")
+                    .font(.custom(Font.aeonikMediumName, size: 14 * scale, relativeTo: .subheadline))
+                    .foregroundStyle(Color.brandInk)
+                    .frame(maxWidth: .infinity, minHeight: 48 * scale)
+                    .background(Color.brandInk.opacity(0.07), in: Capsule())
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(20 * scale)
+        .frame(maxWidth: .infinity)
+        .background(Color.white.opacity(0.62), in: RoundedRectangle(cornerRadius: 32 * scale))
+        .shadow(color: Color.brandPlum.opacity(0.08), radius: 15 * scale)
+    }
+
+    private func humanSupportAssignedCard(scale: CGFloat) -> some View {
+        VStack(spacing: 8 * scale) {
+            humanSupportAvatar(size: 48 * scale)
+            Text("Sarah has been assigned")
+                .font(.custom(Font.aeonikRegularName, size: 18 * scale, relativeTo: .body))
+                .foregroundStyle(Color.brandInk)
+            Text("She is joining the conversation…")
+                .font(.custom(Font.aeonikRegularName, size: 16 * scale, relativeTo: .body))
+                .foregroundStyle(Color.brandInk.opacity(0.44))
+        }
+        .padding(20 * scale)
+        .frame(maxWidth: .infinity)
+        .background(Color.white.opacity(0.62), in: RoundedRectangle(cornerRadius: 32 * scale))
+        .shadow(color: Color.brandPlum.opacity(0.08), radius: 15 * scale)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            store.userDidInteract()
+            withAnimation(.easeInOut(duration: 0.22)) {
+                humanSupportStage = .joined
+            }
+        }
+    }
+
+    private func humanSupportAgentMessage(_ text: String, scale: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: 12 * scale) {
+            HStack(spacing: 8 * scale) {
+                humanSupportAvatar(size: 32 * scale)
+                Text("Sarah")
+                    .font(.custom(Font.aeonikRegularName, size: 16 * scale, relativeTo: .body))
+                    .foregroundStyle(Color.brandInk)
+            }
+            Text(text)
+                .font(.custom(Font.aeonikRegularName, size: 18 * scale, relativeTo: .body))
+                .foregroundStyle(Color.brandInk)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func humanSupportDivider(_ label: String, scale: CGFloat) -> some View {
+        HStack(spacing: 12 * scale) {
+            Rectangle()
+                .fill(Color.brandInk.opacity(0.08))
+                .frame(height: 1)
+            Text(label)
+                .font(.custom(Font.aeonikRegularName, size: 16 * scale, relativeTo: .body))
+                .foregroundStyle(Color.brandInk.opacity(0.44))
+                .fixedSize()
+            Rectangle()
+                .fill(Color.brandInk.opacity(0.08))
+                .frame(height: 1)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    @ViewBuilder
+    private func humanSupportAvatar(size: CGFloat) -> some View {
+        if let image = FigmaScreenImageLoader.image(named: "device-human-agent-sarah") {
+            Image(uiImage: image)
+                .resizable()
+                .interpolation(.high)
+                .scaledToFill()
+                .frame(width: size, height: size)
+                .clipShape(Circle())
+        } else {
+            Circle()
+                .fill(Color.brandBlush)
+                .frame(width: size, height: size)
+                .overlay {
+                    Image(systemName: "person.fill")
+                        .foregroundStyle(Color.brandPlum)
+                }
+        }
+    }
+
+    private func humanSupportInputBar(scale: CGFloat) -> some View {
+        HStack(spacing: 8 * scale) {
+            Image(systemName: "plus")
+                .font(.system(size: 20 * scale, weight: .regular))
+                .foregroundStyle(Color.brandPlum)
+            Text("Ask about your Momcozy Air 1")
+                .font(.custom(Font.aeonikRegularName, size: 16 * scale, relativeTo: .body))
+                .foregroundStyle(Color.brandInk.opacity(0.30))
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, 16 * scale)
+        .background(Color.white.opacity(0.90), in: Capsule())
+        .shadow(color: .black.opacity(0.05), radius: 15 * scale, y: 4 * scale)
+        .accessibilityLabel("Customer service message input")
     }
 
     @ViewBuilder
@@ -1730,6 +2123,18 @@ private enum ExitPresentation {
     case hidden
     case expanded
     case collapsed
+}
+
+private enum DeviceHumanSupportStage: Hashable {
+    case inactive
+    case offer
+    case connecting
+    case assigned
+    case joined
+    case conversation
+    case ended
+
+    var isActive: Bool { self != .inactive }
 }
 
 private enum DemoAction {
