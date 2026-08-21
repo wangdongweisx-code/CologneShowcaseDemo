@@ -297,7 +297,7 @@ struct LactationPlanDemoView: View {
                 feedsExclusively = false
             }
             tapArea(CGRect(x: 20, y: 754, width: 362, height: 78), label: "Next", in: size) {
-                move(to: .feedingCount)
+                move(to: feedsExclusively ? .feedingCount : .nightChoice)
             }
 
         case .feedingCount:
@@ -937,7 +937,7 @@ struct LactationPlanDemoView: View {
             case .information:
                 move(to: .feedingChoice)
             case .feedingChoice:
-                move(to: .feedingCount)
+                move(to: feedsExclusively ? .feedingCount : .nightChoice)
             case .feedingCount:
                 move(to: .nightChoice)
             case .nightChoice:
@@ -1914,7 +1914,7 @@ struct LactationPlanDemoView: View {
         case .information: previous = .start
         case .feedingChoice: previous = .information
         case .feedingCount: previous = .feedingChoice
-        case .nightChoice: previous = .feedingCount
+        case .nightChoice: previous = feedsExclusively ? .feedingCount : .feedingChoice
         case .timePreference: previous = .nightChoice
         case .timePicker: previous = preferredTimes.isEmpty ? .timePreference : .timeList
         case .timeList: previous = .timePreference
