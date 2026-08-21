@@ -707,8 +707,6 @@ struct CommunityExactFinalDemoView: View {
 
     @State private var isJoined = false
     @State private var selectedStatus: String?
-    @State private var likedPosts: Set<Int> = []
-    @State private var favoritePosts: Set<Int> = []
     @State private var savedPosts: Set<Int> = []
     @State private var showsStatusMenu = false
     @State private var previewAsset: String?
@@ -766,6 +764,9 @@ struct CommunityExactFinalDemoView: View {
                             scale: scale
                         ) {
                             withAnimation(.easeInOut(duration: 0.16)) {
+                                if isJoined {
+                                    selectedStatus = nil
+                                }
                                 isJoined.toggle()
                             }
                         }
@@ -827,55 +828,9 @@ struct CommunityExactFinalDemoView: View {
                         }
 
                         ForEach(0..<3, id: \.self) { index in
-                            let actionY = postActionY[index]
-
-                            exactButton(
-                                label: likedPosts.contains(index) ? "Unlike post" : "Like post",
-                                x: 49, y: actionY, width: 56, height: 42,
-                                scale: scale
-                            ) {
-                                toggle(index, in: &likedPosts)
-                            }
-
-                            if likedPosts.contains(index) {
-                                Label("1", systemImage: "hand.thumbsup.fill")
-                                    .font(.system(size: 12 * scale, weight: .regular))
-                                    .foregroundStyle(Color.brandPlum)
-                                    .frame(width: 52 * scale, height: 28 * scale)
-                                    .background(Color.communityCanvas)
-                                    .position(x: 49 * scale, y: actionY * scale)
-                                    .allowsHitTesting(false)
-                            }
-
-                            exactButton(
-                                label: favoritePosts.contains(index) ? "Remove reaction" : "React to post",
-                                x: 93, y: actionY, width: 48, height: 42,
-                                scale: scale
-                            ) {
-                                toggle(index, in: &favoritePosts)
-                            }
-
-                            if favoritePosts.contains(index) {
-                                Image(systemName: "star.fill")
-                                    .font(.system(size: 15 * scale))
-                                    .foregroundStyle(Color.brandPlum)
-                                    .frame(width: 42 * scale, height: 28 * scale)
-                                    .background(Color.communityCanvas)
-                                    .position(x: 93 * scale, y: actionY * scale)
-                                    .allowsHitTesting(false)
-                            }
-
-                            ShareLink(item: postShareText[index]) {
-                                Color.clear.contentShape(Rectangle())
-                            }
-                            .simultaneousGesture(TapGesture().onEnded { store.userDidInteract() })
-                            .frame(width: 48 * scale, height: 42 * scale)
-                            .position(x: 139 * scale, y: actionY * scale)
-                            .accessibilityLabel("Share post")
-
                             exactButton(
                                 label: savedPosts.contains(index) ? "Remove bookmark" : "Bookmark post",
-                                x: 345, y: actionY, width: 56, height: 42,
+                                x: 345, y: postActionY[index], width: 56, height: 42,
                                 scale: scale
                             ) {
                                 toggle(index, in: &savedPosts)
@@ -887,7 +842,7 @@ struct CommunityExactFinalDemoView: View {
                                     .foregroundStyle(Color.brandPlum)
                                     .frame(width: 42 * scale, height: 28 * scale)
                                     .background(Color.communityCanvas)
-                                    .position(x: 345 * scale, y: actionY * scale)
+                                    .position(x: 345 * scale, y: postActionY[index] * scale)
                                     .allowsHitTesting(false)
                             }
 
@@ -926,7 +881,10 @@ struct CommunityExactFinalDemoView: View {
             ForEach(statusTargets.map(\.label), id: \.self) { status in
                 Button(status) {
                     store.userDidInteract()
-                    selectedStatus = status
+                    withAnimation(.easeInOut(duration: 0.16)) {
+                        selectedStatus = status
+                        isJoined = true
+                    }
                 }
             }
             Button("Cancel", role: .cancel) { }
@@ -1004,11 +962,6 @@ struct CommunityExactFinalDemoView: View {
         "community-post-3"
     ]
 
-    private let postShareText = [
-        "Second letdown is taking its sweet time. I put one tiny lamp on and I am pretending this corner is a tiny night café.",
-        "The baby monitor is brighter than the moon right now. She is finally asleep, so I am sitting completely still and celebrating quietly.",
-        "Bottle is ready, pump parts are drying, and I just found yesterday’s burp cloth in my hoodie pocket. Calling it a win."
-    ]
 }
 
 private struct CommunityExactFigmaScrollView: View {
