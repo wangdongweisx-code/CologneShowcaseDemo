@@ -690,7 +690,7 @@ struct TimelineDemoView: View {
 
     private var timelineTodayDate: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
+        formatter.dateFormat = "M/d/yyyy"
         return formatter.string(from: .now)
     }
 

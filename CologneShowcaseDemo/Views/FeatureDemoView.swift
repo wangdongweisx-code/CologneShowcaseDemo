@@ -5,8 +5,7 @@ struct FeatureDemoView: View {
     let feature: ShowcaseFeature
     @ObservedObject var store: DemoStore
     @State private var stepIndex = 0
-    @State private var exitPresentation: ExitPresentation = .hidden
-    @State private var hasPresentedExit = false
+    @State private var exitPresentation: ExitPresentation = .expanded
     @State private var exitTask: Task<Void, Never>?
     @State private var isCustomFinalPage = false
     @State private var isSetupVideoPlaying = false
@@ -89,16 +88,14 @@ struct FeatureDemoView: View {
                     )
                 }
 
-                if exitPresentation != .hidden && !isAgentInputFocused {
-                    exitButton(in: proxy.size)
-                }
+                exitButton(in: proxy.size)
             }
         }
         // Keep the keyboard safe area active so the live Agent composer
         // follows the real iOS keyboard instead of remaining underneath it.
         .ignoresSafeArea(.container, edges: .all)
         .onAppear {
-            configureExitButton()
+            expandExitButtonTemporarily()
         }
         .onChange(of: stepIndex) { _, _ in
             if !isDeviceVideoStep {
@@ -117,10 +114,10 @@ struct FeatureDemoView: View {
             } else {
                 resetVoiceRecording()
             }
-            configureExitButton()
+            updateExitButtonForCurrentPage()
         }
         .onChange(of: isCustomFinalPage) { _, _ in
-            configureExitButton()
+            updateExitButtonForCurrentPage()
         }
         .task(id: stepIndex) {
             guard let delay = currentStep.automaticAdvanceDelay else { return }
@@ -486,14 +483,13 @@ struct FeatureDemoView: View {
 
                     if
                         isSetupVideoPlaying,
-                        let url = Bundle.main.url(forResource: "Air1Setup", withExtension: "mp4")
+                        let url = Bundle.main.url(forResource: guide.videoResourceName, withExtension: "mp4")
                     {
                         InlineVideoPlayerView(
                             url: url,
-                            isPlaying: true,
-                            startTime: guide.videoStartTime
+                            isPlaying: true
                         )
-                            .id(deviceSetupStepIndex)
+                            .id(guide.videoResourceName)
                             .frame(height: 221 * scale)
                             .clipped()
                     }
@@ -823,7 +819,10 @@ struct FeatureDemoView: View {
 
         if
             isSetupVideoPlaying,
-            let url = Bundle.main.url(forResource: "Air1Setup", withExtension: "mp4")
+            let url = Bundle.main.url(
+                forResource: "Air1SetupStep\(deviceSetupStepIndex + 1)",
+                withExtension: "mp4"
+            )
         {
             InlineVideoPlayerView(url: url, isPlaying: true)
                 .frame(
@@ -1313,23 +1312,6 @@ struct FeatureDemoView: View {
                 .id(currentStep.assetName)
                 .frame(width: frame.width, height: frame.height)
 
-            // Replace the rasterized Agent title with the approved product name.
-            LinearGradient(
-                colors: [
-                    Color(red: 1.000, green: 0.956, blue: 0.958),
-                    Color(red: 0.997, green: 0.930, blue: 0.935)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .frame(width: 238 * scale, height: 48 * scale)
-            .position(x: frame.midX, y: frame.minY + 102 * scale)
-
-            Text("Cozie AI")
-                .font(.brandMedium(17 * scale, relativeTo: .headline))
-                .foregroundStyle(Color.brandInk)
-                .position(x: frame.midX, y: frame.minY + 102 * scale)
-
             // The approved frame already contains a static composer. Cover
             // that rasterized control before placing the real TextField so
             // the Agent always shows exactly one editable input.
@@ -1499,24 +1481,22 @@ struct FeatureDemoView: View {
         }
     }
 
-    private func configureExitButton() {
+    private func updateExitButtonForCurrentPage() {
+        if isFinalFeaturePage {
+            expandExitButtonTemporarily()
+        } else {
+            exitTask?.cancel()
+            withAnimation(.easeInOut(duration: 0.2)) {
+                exitPresentation = .collapsed
+            }
+        }
+    }
+
+    private func expandExitButtonTemporarily() {
         exitTask?.cancel()
-
-        // The Exit Demo control is introduced only when a feature reaches its
-        // final showcase page. Every fresh arrival expands it for two seconds.
-        guard isFinalFeaturePage else {
-            exitPresentation = .hidden
-            hasPresentedExit = false
-            return
+        withAnimation(.easeInOut(duration: 0.2)) {
+            exitPresentation = .expanded
         }
-
-        guard !hasPresentedExit else {
-            exitPresentation = .collapsed
-            return
-        }
-
-        hasPresentedExit = true
-        exitPresentation = .expanded
         exitTask = Task { @MainActor in
             try? await Task.sleep(for: .seconds(2))
             guard !Task.isCancelled else { return }
@@ -1576,6 +1556,7 @@ private struct DeviceGuideInstruction {
 /// and controls stay sharp while the supplied instructional imagery is reused.
 private struct DeviceSetupGuideStep {
     let title: String
+    let videoResourceName: String
     let caption: String
     let description: String
     let warning: String
@@ -1585,16 +1566,11 @@ private struct DeviceSetupGuideStep {
         instructions.map(\.image)
     }
 
-    /// The supplied operation movie is one continuous walkthrough. Each
-    /// chapter opens at its own portion so changing steps also changes video.
-    var videoStartTime: TimeInterval {
-        guard let index = Self.steps.firstIndex(where: { $0.title == title }) else { return 0 }
-        return TimeInterval(index * 15)
-    }
 
     static let steps: [DeviceSetupGuideStep] = [
         DeviceSetupGuideStep(
             title: "Unbox & Inspect",
+            videoResourceName: "Air1SetupStep1",
             caption: "Confirm all accessories are included",
             description: "Parts overview: main unit, collection cups, flanges, membranes, valves, power cable, etc. Use the checklist to verify each item.",
             warning: "Missing or damaged parts? Contact customer support and have your order number and proof of purchase ready.",
@@ -1608,6 +1584,7 @@ private struct DeviceSetupGuideStep {
         ),
         DeviceSetupGuideStep(
             title: "Choose Your Flange Size",
+            videoResourceName: "Air1SetupStep2",
             caption: "Measure before selecting a flange",
             description: "Measure the nipple diameter with the included sizing tool, then choose the recommended flange or insert size.",
             warning: "Measure the nipple only—not the areola. Recheck the fit if rubbing, pinching, or swelling occurs.",
@@ -1626,6 +1603,7 @@ private struct DeviceSetupGuideStep {
         ),
         DeviceSetupGuideStep(
             title: "Disassemble Parts",
+            videoResourceName: "Air1SetupStep3",
             caption: "Remove parts in the correct order",
             description: "Detach the flange, release the milk collector from the main unit, remove the diaphragm, then separate the collector and valve.",
             warning: "Pull gently at the marked edges. Never wash the main unit, charging case, charging cable, or adapter.",
@@ -1654,6 +1632,7 @@ private struct DeviceSetupGuideStep {
         ),
         DeviceSetupGuideStep(
             title: "Clean & Sterilize",
+            videoResourceName: "Air1SetupStep4",
             caption: "Clean every washable part before use",
             description: "Wash the washable parts with warm water and mild detergent, then sterilize using boiling water or a steam bag.",
             warning: "Do not wash or sterilize the pump motor. Keep parts away from the heated container’s edges.",
@@ -1672,6 +1651,7 @@ private struct DeviceSetupGuideStep {
         ),
         DeviceSetupGuideStep(
             title: "Assemble the Pump",
+            videoResourceName: "Air1SetupStep5",
             caption: "Reassemble every part securely",
             description: "Install the valve and membrane, attach the collection cup, and press around every edge until the seal is even.",
             warning: "A loose membrane or valve can reduce suction. Check that each part is flat and fully seated.",
@@ -1695,6 +1675,7 @@ private struct DeviceSetupGuideStep {
         ),
         DeviceSetupGuideStep(
             title: "Wear & Position",
+            videoResourceName: "Air1SetupStep6",
             caption: "Center the nipple before pumping",
             description: "Place the pump inside the bra and align the nipple with the flange tunnel. Keep the pump upright against the breast.",
             warning: "Avoid tilting the pump or compressing the breast. Reposition if the nipple rubs the tunnel.",
@@ -1713,6 +1694,7 @@ private struct DeviceSetupGuideStep {
         ),
         DeviceSetupGuideStep(
             title: "Start Pumping",
+            videoResourceName: "Air1SetupStep7",
             caption: "Learn the controls before your first session",
             description: "Use the mode, decrease, increase, and power buttons to start and adjust a comfortable pumping session.",
             warning: "Keep the pump upright when removing it and pour milk through the spout. Stop if pumping feels painful.",
@@ -1785,7 +1767,6 @@ private struct SourceMaterialImageView: View {
 }
 
 private enum ExitPresentation {
-    case hidden
     case expanded
     case collapsed
 }
