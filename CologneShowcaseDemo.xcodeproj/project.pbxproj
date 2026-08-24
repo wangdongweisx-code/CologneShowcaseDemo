@@ -21,6 +21,7 @@
 		A0000000000000000000000C /* VoiceLogDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000C /* VoiceLogDemoView.swift */; };
 		A0000000000000000000000D /* LactationPlanDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000D /* LactationPlanDemoView.swift */; };
 		A0000000000000000000000E /* TimelineDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000E /* TimelineDemoView.swift */; };
+		A00000000000000000000020 /* TimelineShareNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000023 /* TimelineShareNativeView.swift */; };
 		A0000000000000000000000F /* CommunityDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000F /* CommunityDemoView.swift */; };
 		A00000000000000000000010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000010 /* Assets.xcassets */; };
 		A00000000000000000000011 /* FigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000014 /* FigmaScreenView.swift */; };
@@ -29,6 +30,13 @@
 		A00000000000000000000014 /* Media/Air1Setup.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000017 /* Media/Air1Setup.mp4 */; };
 		A00000000000000000000015 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000018 /* Fonts */; };
 		A00000000000000000000018 /* Media/MotionLactationPlan.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000001B /* Media/MotionLactationPlan.mp4 */; };
+		A00000000000000000000019 /* Media/Air1SetupStep1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000001C /* Media/Air1SetupStep1.mp4 */; };
+		A0000000000000000000001A /* Media/Air1SetupStep2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000001D /* Media/Air1SetupStep2.mp4 */; };
+		A0000000000000000000001B /* Media/Air1SetupStep3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000001E /* Media/Air1SetupStep3.mp4 */; };
+		A0000000000000000000001C /* Media/Air1SetupStep4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000001F /* Media/Air1SetupStep4.mp4 */; };
+		A0000000000000000000001D /* Media/Air1SetupStep5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000020 /* Media/Air1SetupStep5.mp4 */; };
+		A0000000000000000000001E /* Media/Air1SetupStep6.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000021 /* Media/Air1SetupStep6.mp4 */; };
+		A0000000000000000000001F /* Media/Air1SetupStep7.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000022 /* Media/Air1SetupStep7.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +54,7 @@
 		B0000000000000000000000C /* VoiceLogDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceLogDemoView.swift; sourceTree = "<group>"; };
 		B0000000000000000000000D /* LactationPlanDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LactationPlanDemoView.swift; sourceTree = "<group>"; };
 		B0000000000000000000000E /* TimelineDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDemoView.swift; sourceTree = "<group>"; };
+		B00000000000000000000023 /* TimelineShareNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineShareNativeView.swift; sourceTree = "<group>"; };
 		B0000000000000000000000F /* CommunityDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDemoView.swift; sourceTree = "<group>"; };
 		B00000000000000000000010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B00000000000000000000011 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Media/README.md; sourceTree = "<group>"; };
@@ -56,6 +65,13 @@
 		B00000000000000000000017 /* Media/Air1Setup.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1Setup.mp4; sourceTree = "<group>"; };
 		B00000000000000000000018 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		B0000000000000000000001B /* Media/MotionLactationPlan.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/MotionLactationPlan.mp4; sourceTree = "<group>"; };
+		B0000000000000000000001C /* Media/Air1SetupStep1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep1.mp4; sourceTree = "<group>"; };
+		B0000000000000000000001D /* Media/Air1SetupStep2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep2.mp4; sourceTree = "<group>"; };
+		B0000000000000000000001E /* Media/Air1SetupStep3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep3.mp4; sourceTree = "<group>"; };
+		B0000000000000000000001F /* Media/Air1SetupStep4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep4.mp4; sourceTree = "<group>"; };
+		B00000000000000000000020 /* Media/Air1SetupStep5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep5.mp4; sourceTree = "<group>"; };
+		B00000000000000000000021 /* Media/Air1SetupStep6.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep6.mp4; sourceTree = "<group>"; };
+		B00000000000000000000022 /* Media/Air1SetupStep7.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep7.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +153,7 @@
 				B0000000000000000000000C /* VoiceLogDemoView.swift */,
 				B0000000000000000000000D /* LactationPlanDemoView.swift */,
 				B0000000000000000000000E /* TimelineDemoView.swift */,
+				B00000000000000000000023 /* TimelineShareNativeView.swift */,
 				B0000000000000000000000F /* CommunityDemoView.swift */,
 			);
 			path = Flows;
@@ -148,6 +165,13 @@
 				B00000000000000000000016 /* Media/BrandLoop.mp4 */,
 				B00000000000000000000017 /* Media/Air1Setup.mp4 */,
 				B0000000000000000000001B /* Media/MotionLactationPlan.mp4 */,
+				B0000000000000000000001C /* Media/Air1SetupStep1.mp4 */,
+				B0000000000000000000001D /* Media/Air1SetupStep2.mp4 */,
+				B0000000000000000000001E /* Media/Air1SetupStep3.mp4 */,
+				B0000000000000000000001F /* Media/Air1SetupStep4.mp4 */,
+				B00000000000000000000020 /* Media/Air1SetupStep5.mp4 */,
+				B00000000000000000000021 /* Media/Air1SetupStep6.mp4 */,
+				B00000000000000000000022 /* Media/Air1SetupStep7.mp4 */,
 				B00000000000000000000011 /* README.md */,
 				B00000000000000000000018 /* Fonts */,
 				B00000000000000000000015 /* FigmaScreens */,
@@ -227,6 +251,13 @@
 				A00000000000000000000014 /* Media/Air1Setup.mp4 in Resources */,
 				A00000000000000000000015 /* Fonts in Resources */,
 				A00000000000000000000018 /* Media/MotionLactationPlan.mp4 in Resources */,
+				A00000000000000000000019 /* Media/Air1SetupStep1.mp4 in Resources */,
+				A0000000000000000000001A /* Media/Air1SetupStep2.mp4 in Resources */,
+				A0000000000000000000001B /* Media/Air1SetupStep3.mp4 in Resources */,
+				A0000000000000000000001C /* Media/Air1SetupStep4.mp4 in Resources */,
+				A0000000000000000000001D /* Media/Air1SetupStep5.mp4 in Resources */,
+				A0000000000000000000001E /* Media/Air1SetupStep6.mp4 in Resources */,
+				A0000000000000000000001F /* Media/Air1SetupStep7.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +282,7 @@
 				A0000000000000000000000C /* VoiceLogDemoView.swift in Sources */,
 				A0000000000000000000000D /* LactationPlanDemoView.swift in Sources */,
 				A0000000000000000000000E /* TimelineDemoView.swift in Sources */,
+				A00000000000000000000020 /* TimelineShareNativeView.swift in Sources */,
 				A0000000000000000000000F /* CommunityDemoView.swift in Sources */,
 				A00000000000000000000011 /* FigmaScreenView.swift in Sources */,
 			);
@@ -300,7 +332,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YP9F4937J4;
+				DEVELOPMENT_TEAM = 7RWKSUVVA6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_AI_PROXY_URL = "http://192.168.50.154:8787/agent";
 				INFOPLIST_KEY_CFBundleDisplayName = "Momcozy Showcase";
@@ -330,7 +362,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = YP9F4937J4;
+				DEVELOPMENT_TEAM = 7RWKSUVVA6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_AI_PROXY_URL = "http://192.168.50.154:8787/agent";
 				INFOPLIST_KEY_CFBundleDisplayName = "Momcozy Showcase";
