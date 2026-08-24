@@ -5,9 +5,9 @@ struct FeatureDemoView: View {
     let feature: ShowcaseFeature
     @ObservedObject var store: DemoStore
     @State private var stepIndex = 0
-    @State private var exitPresentation: ExitPresentation = .hidden
-    @State private var hasPresentedExit = false
+    @State private var exitPresentation: ExitPresentation = .expanded
     @State private var exitTask: Task<Void, Never>?
+    @State private var isCustomFinalPage = false
     @State private var isSetupVideoPlaying = false
     @State private var isDeviceHowToExpanded = true
     @State private var isDeviceWarningExpanded = true
@@ -30,9 +30,13 @@ struct FeatureDemoView: View {
         GeometryReader { proxy in
             ZStack {
                 if feature == .lactationPlan {
-                    LactationPlanDemoView(store: store)
+                    LactationPlanDemoView(store: store) { isFinalPage in
+                        isCustomFinalPage = isFinalPage
+                    }
                 } else if feature == .lactationTimeline {
-                    TimelineDemoView(store: store)
+                    TimelineDemoView(store: store) { isFinalPage in
+                        isCustomFinalPage = isFinalPage
+                    }
                 } else if isCommunityIntroStep {
                     CommunityIntroDemoView(
                         store: store,
@@ -84,16 +88,14 @@ struct FeatureDemoView: View {
                     )
                 }
 
-                if exitPresentation != .hidden && !isAgentInputFocused {
-                    exitButton(in: proxy.size)
-                }
+                exitButton(in: proxy.size)
             }
         }
         // Keep the keyboard safe area active so the live Agent composer
         // follows the real iOS keyboard instead of remaining underneath it.
         .ignoresSafeArea(.container, edges: .all)
         .onAppear {
-            configureExitButton()
+            expandExitButtonTemporarily()
         }
         .onChange(of: stepIndex) { _, _ in
             if !isDeviceVideoStep {
@@ -112,7 +114,10 @@ struct FeatureDemoView: View {
             } else {
                 resetVoiceRecording()
             }
-            configureExitButton()
+            updateExitButtonForCurrentPage()
+        }
+        .onChange(of: isCustomFinalPage) { _, _ in
+            updateExitButtonForCurrentPage()
         }
         .task(id: stepIndex) {
             guard let delay = currentStep.automaticAdvanceDelay else { return }
@@ -1473,28 +1478,31 @@ struct FeatureDemoView: View {
         .accessibilityLabel("Back to selling points")
     }
 
-    private func configureExitButton() {
+    private var isFinalFeaturePage: Bool {
+        switch feature {
+        case .lactationPlan, .lactationTimeline:
+            return isCustomFinalPage
+        default:
+            return stepIndex == feature.demoSteps.count - 1
+        }
+    }
+
+    private func updateExitButtonForCurrentPage() {
+        if isFinalFeaturePage {
+            expandExitButtonTemporarily()
+        } else {
+            exitTask?.cancel()
+            withAnimation(.easeInOut(duration: 0.2)) {
+                exitPresentation = .collapsed
+            }
+        }
+    }
+
+    private func expandExitButtonTemporarily() {
         exitTask?.cancel()
-
-        // The custom plan/timeline flows manage their own internal stages.
-        // Voice Log uses the original Figma step sequence and still keeps the
-        // exhibition exit control available after its first highlighted step.
-        guard feature == .lactationPlan
-                || feature == .lactationTimeline
-                || feature == .voiceLog
-                || feature == .community
-                || !currentStep.hidesExitButton else {
-            exitPresentation = .hidden
-            return
+        withAnimation(.easeInOut(duration: 0.2)) {
+            exitPresentation = .expanded
         }
-
-        guard !hasPresentedExit else {
-            exitPresentation = .collapsed
-            return
-        }
-
-        hasPresentedExit = true
-        exitPresentation = .expanded
         exitTask = Task { @MainActor in
             try? await Task.sleep(for: .seconds(2))
             guard !Task.isCancelled else { return }
@@ -1765,7 +1773,6 @@ private struct SourceMaterialImageView: View {
 }
 
 private enum ExitPresentation {
-    case hidden
     case expanded
     case collapsed
 }
