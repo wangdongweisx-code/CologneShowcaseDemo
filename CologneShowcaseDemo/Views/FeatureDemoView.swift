@@ -5,7 +5,8 @@ struct FeatureDemoView: View {
     let feature: ShowcaseFeature
     @ObservedObject var store: DemoStore
     @State private var stepIndex = 0
-    @State private var exitPresentation: ExitPresentation = .expanded
+    @State private var exitPresentation: ExitPresentation = .hidden
+    @State private var hasPresentedExit = false
     @State private var exitTask: Task<Void, Never>?
     @State private var isSetupVideoPlaying = false
     @State private var isDeviceHowToExpanded = true
@@ -83,14 +84,16 @@ struct FeatureDemoView: View {
                     )
                 }
 
-                exitButton(in: proxy.size)
+                if exitPresentation != .hidden && !isAgentInputFocused {
+                    exitButton(in: proxy.size)
+                }
             }
         }
         // Keep the keyboard safe area active so the live Agent composer
         // follows the real iOS keyboard instead of remaining underneath it.
         .ignoresSafeArea(.container, edges: .all)
         .onAppear {
-            expandExitButtonTemporarily()
+            configureExitButton()
         }
         .onChange(of: stepIndex) { _, _ in
             if !isDeviceVideoStep {
@@ -109,7 +112,7 @@ struct FeatureDemoView: View {
             } else {
                 resetVoiceRecording()
             }
-            updateExitButtonForCurrentPage()
+            configureExitButton()
         }
         .task(id: stepIndex) {
             guard let delay = currentStep.automaticAdvanceDelay else { return }
@@ -1484,6 +1487,14 @@ struct FeatureDemoView: View {
             exitPresentation = .hidden
             return
         }
+
+        guard !hasPresentedExit else {
+            exitPresentation = .collapsed
+            return
+        }
+
+        hasPresentedExit = true
+        exitPresentation = .expanded
         exitTask = Task { @MainActor in
             try? await Task.sleep(for: .seconds(2))
             guard !Task.isCancelled else { return }
@@ -1754,6 +1765,7 @@ private struct SourceMaterialImageView: View {
 }
 
 private enum ExitPresentation {
+    case hidden
     case expanded
     case collapsed
 }
