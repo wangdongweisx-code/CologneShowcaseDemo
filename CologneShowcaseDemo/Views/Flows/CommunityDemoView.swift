@@ -827,6 +827,14 @@ struct CommunityExactFinalDemoView: View {
                             }
                         }
 
+                        exactButton(
+                            label: "Share post prompt",
+                            x: 201, y: 621, width: 402, height: 64,
+                            scale: scale
+                        ) {
+                            store.showDemoUnavailableToast()
+                        }
+
                         ForEach(0..<3, id: \.self) { index in
                             exactButton(
                                 label: savedPosts.contains(index) ? "Remove bookmark" : "Bookmark post",

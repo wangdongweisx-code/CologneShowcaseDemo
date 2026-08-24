@@ -8,7 +8,6 @@ struct FeatureDemoView: View {
     @State private var exitPresentation: ExitPresentation = .hidden
     @State private var hasPresentedExit = false
     @State private var exitTask: Task<Void, Never>?
-    @State private var isCustomFinalPage = false
     @State private var isSetupVideoPlaying = false
     @State private var isDeviceHowToExpanded = true
     @State private var isDeviceWarningExpanded = true
@@ -31,13 +30,9 @@ struct FeatureDemoView: View {
         GeometryReader { proxy in
             ZStack {
                 if feature == .lactationPlan {
-                    LactationPlanDemoView(store: store) { isFinalPage in
-                        isCustomFinalPage = isFinalPage
-                    }
+                    LactationPlanDemoView(store: store)
                 } else if feature == .lactationTimeline {
-                    TimelineDemoView(store: store) { isFinalPage in
-                        isCustomFinalPage = isFinalPage
-                    }
+                    TimelineDemoView(store: store)
                 } else if isCommunityIntroStep {
                     CommunityIntroDemoView(
                         store: store,
@@ -117,9 +112,6 @@ struct FeatureDemoView: View {
             } else {
                 resetVoiceRecording()
             }
-            configureExitButton()
-        }
-        .onChange(of: isCustomFinalPage) { _, _ in
             configureExitButton()
         }
         .task(id: stepIndex) {
@@ -1151,6 +1143,10 @@ struct FeatureDemoView: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    isAgentInputFocused = false
+                }
 
                 ScrollViewReader { scrollProxy in
                     ScrollView {
@@ -1275,6 +1271,10 @@ struct FeatureDemoView: View {
                 endPoint: .bottom
             )
         )
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isAgentInputFocused = false
+        }
         .clipped()
         .position(x: frame.midX, y: top + height / 2)
         .transition(.opacity)
@@ -1422,9 +1422,7 @@ struct FeatureDemoView: View {
 
         store.userDidInteract()
         agentDraft = ""
-        // Keep the keyboard open for typed follow-ups; suggested prompts can
-        // start a hands-free conversation without presenting it.
-        isAgentInputFocused = suggestedPrompt == nil
+        isAgentInputFocused = false
         agentMessages.append(DeviceAgentMessage(role: .user, text: question))
         isAgentResponding = true
         agentConnectionStatus = AIAgentClient.isConfigured ? .connecting : .local
@@ -1490,23 +1488,18 @@ struct FeatureDemoView: View {
         .accessibilityLabel("Back to selling points")
     }
 
-    private var isFinalFeaturePage: Bool {
-        switch feature {
-        case .lactationPlan, .lactationTimeline:
-            return isCustomFinalPage
-        default:
-            return stepIndex == feature.demoSteps.count - 1
-        }
-    }
-
     private func configureExitButton() {
         exitTask?.cancel()
 
-        // The Exit Demo control is introduced only when a feature reaches its
-        // final showcase page. Every fresh arrival expands it for two seconds.
-        guard isFinalFeaturePage else {
+        // The custom plan/timeline flows manage their own internal stages.
+        // Voice Log uses the original Figma step sequence and still keeps the
+        // exhibition exit control available after its first highlighted step.
+        guard feature == .lactationPlan
+                || feature == .lactationTimeline
+                || feature == .voiceLog
+                || feature == .community
+                || !currentStep.hidesExitButton else {
             exitPresentation = .hidden
-            hasPresentedExit = false
             return
         }
 
