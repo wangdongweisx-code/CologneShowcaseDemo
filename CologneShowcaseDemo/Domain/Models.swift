@@ -26,8 +26,8 @@ enum ShowcaseFeature: String, CaseIterable, Identifiable, Hashable {
     var coverTitle: String {
         switch self {
         case .deviceAssistant: "Connect Your Pump. Get Instant AI Support."
-        case .voiceLog: "Just Say It. It’s Logged."
-        case .lactationPlan: "Your Pumping Plan. Made for You."
+        case .voiceLog: "Your Pumping Plan. Made for You."
+        case .lactationPlan: "Just Say It. It’s Logged."
         case .lactationTimeline: "Map Your Feeding. See What’s Next."
         case .community: "Find Your Mom Group. Share the Journey."
         }
