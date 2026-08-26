@@ -334,7 +334,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RWKSUVVA6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_AI_PROXY_URL = "http://192.168.50.154:8787/agent";
+				INFOPLIST_KEY_AI_PROXY_URL = "https://pike-founded-oasis-carpet.trycloudflare.com/agent";
 				INFOPLIST_KEY_CFBundleDisplayName = "Momcozy Showcase";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
@@ -364,7 +364,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7RWKSUVVA6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_AI_PROXY_URL = "http://192.168.50.154:8787/agent";
+				INFOPLIST_KEY_AI_PROXY_URL = "https://pike-founded-oasis-carpet.trycloudflare.com/agent";
 				INFOPLIST_KEY_CFBundleDisplayName = "Momcozy Showcase";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsLocalNetworking = YES;
