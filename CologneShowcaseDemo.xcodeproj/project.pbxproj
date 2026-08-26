@@ -21,7 +21,6 @@
 		A0000000000000000000000C /* VoiceLogDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000C /* VoiceLogDemoView.swift */; };
 		A0000000000000000000000D /* LactationPlanDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000D /* LactationPlanDemoView.swift */; };
 		A0000000000000000000000E /* TimelineDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000E /* TimelineDemoView.swift */; };
-		A00000000000000000000020 /* TimelineShareNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000023 /* TimelineShareNativeView.swift */; };
 		A0000000000000000000000F /* CommunityDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000F /* CommunityDemoView.swift */; };
 		A00000000000000000000010 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000010 /* Assets.xcassets */; };
 		A00000000000000000000011 /* FigmaScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000014 /* FigmaScreenView.swift */; };
@@ -37,6 +36,8 @@
 		A0000000000000000000001D /* Media/Air1SetupStep5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000020 /* Media/Air1SetupStep5.mp4 */; };
 		A0000000000000000000001E /* Media/Air1SetupStep6.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000021 /* Media/Air1SetupStep6.mp4 */; };
 		A0000000000000000000001F /* Media/Air1SetupStep7.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000022 /* Media/Air1SetupStep7.mp4 */; };
+		A00000000000000000000020 /* TimelineShareNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000023 /* TimelineShareNativeView.swift */; };
+		A00000000000000000000021 /* DeviceAgentChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000024 /* DeviceAgentChatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +55,6 @@
 		B0000000000000000000000C /* VoiceLogDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceLogDemoView.swift; sourceTree = "<group>"; };
 		B0000000000000000000000D /* LactationPlanDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LactationPlanDemoView.swift; sourceTree = "<group>"; };
 		B0000000000000000000000E /* TimelineDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDemoView.swift; sourceTree = "<group>"; };
-		B00000000000000000000023 /* TimelineShareNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineShareNativeView.swift; sourceTree = "<group>"; };
 		B0000000000000000000000F /* CommunityDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityDemoView.swift; sourceTree = "<group>"; };
 		B00000000000000000000010 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B00000000000000000000011 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = Media/README.md; sourceTree = "<group>"; };
@@ -72,6 +72,8 @@
 		B00000000000000000000020 /* Media/Air1SetupStep5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep5.mp4; sourceTree = "<group>"; };
 		B00000000000000000000021 /* Media/Air1SetupStep6.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep6.mp4; sourceTree = "<group>"; };
 		B00000000000000000000022 /* Media/Air1SetupStep7.mp4 */ = {isa = PBXFileReference; lastKnownFileType = video.mp4; path = Media/Air1SetupStep7.mp4; sourceTree = "<group>"; };
+		B00000000000000000000023 /* TimelineShareNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineShareNativeView.swift; sourceTree = "<group>"; };
+		B00000000000000000000024 /* DeviceAgentChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAgentChatView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				B0000000000000000000000B /* DeviceAssistantDemoView.swift */,
+				B00000000000000000000024 /* DeviceAgentChatView.swift */,
 				B0000000000000000000000C /* VoiceLogDemoView.swift */,
 				B0000000000000000000000D /* LactationPlanDemoView.swift */,
 				B0000000000000000000000E /* TimelineDemoView.swift */,
@@ -279,6 +282,7 @@
 				A00000000000000000000009 /* CoverCarouselView.swift in Sources */,
 				A0000000000000000000000A /* FeatureDemoView.swift in Sources */,
 				A0000000000000000000000B /* DeviceAssistantDemoView.swift in Sources */,
+				A00000000000000000000021 /* DeviceAgentChatView.swift in Sources */,
 				A0000000000000000000000C /* VoiceLogDemoView.swift in Sources */,
 				A0000000000000000000000D /* LactationPlanDemoView.swift in Sources */,
 				A0000000000000000000000E /* TimelineDemoView.swift in Sources */,

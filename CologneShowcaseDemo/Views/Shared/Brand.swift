@@ -1,3 +1,4 @@
+import CoreText
 import SwiftUI
 
 extension Color {
@@ -42,6 +43,22 @@ extension Font {
         relativeTo style: Font.TextStyle = .headline
     ) -> Font {
         .custom(aeonikSemiBoldName, size: size, relativeTo: style)
+    }
+}
+
+enum BrandFonts {
+    /// `UIAppFonts` cannot be supplied through `INFOPLIST_KEY_*`, so the bundled
+    /// families are registered at launch. Without this every `.brand*` font
+    /// silently falls back to the system face.
+    static func register() {
+        guard
+            let root = Bundle.main.url(forResource: "Fonts", withExtension: nil),
+            let files = FileManager.default.enumerator(at: root, includingPropertiesForKeys: nil)
+        else { return }
+
+        for case let url as URL in files where ["otf", "ttf"].contains(url.pathExtension.lowercased()) {
+            CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+        }
     }
 }
 

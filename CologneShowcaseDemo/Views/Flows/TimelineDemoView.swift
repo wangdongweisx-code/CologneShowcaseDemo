@@ -15,6 +15,7 @@ struct TimelineDemoView: View {
     @State private var maternityLeaveValue = 3
     @State private var maternityLeaveUnit: TimelineDurationUnit = .week
     @State private var showsMoreMenu = false
+    @State private var shareReturnStage: TimelineStage = .result
 
     var body: some View {
         GeometryReader { proxy in
@@ -130,7 +131,7 @@ struct TimelineDemoView: View {
 
         case .share:
             tapArea(CGRect(x: 10, y: 640, width: 70, height: 72), label: "Close sharing", in: size) {
-                move(to: .knowledge)
+                move(to: shareReturnStage)
             }
             tapArea(CGRect(x: 10, y: 716, width: 90, height: 118), label: "Share to Community", in: size) {
                 move(to: .communityShare)
@@ -863,7 +864,7 @@ struct TimelineDemoView: View {
         case .knowledge:
             move(to: .insights)
         case .share:
-            move(to: .knowledge)
+            move(to: shareReturnStage)
         case .communityShare:
             move(to: .share)
         case .notification:
@@ -900,6 +901,9 @@ struct TimelineDemoView: View {
 
     private func move(to nextStage: TimelineStage) {
         store.userDidInteract()
+        if nextStage == .share, stage != .share, stage != .communityShare {
+            shareReturnStage = stage
+        }
         withAnimation(.easeInOut(duration: 0.18)) {
             stage = nextStage
         }

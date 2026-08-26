@@ -53,7 +53,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "OPENAI_PROXY_URL"
-            value = "http://localhost:8787/agent"
+            value = "https://pike-founded-oasis-carpet.trycloudflare.com/agent"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

@@ -47,21 +47,23 @@ struct FeatureDemoView: View {
                     .id(stepIndex)
                 } else if isCommunityGroupStep {
                     CommunityExactFinalDemoView(store: store, onBack: goBack)
+                } else if isDeviceAgentStep {
+                    DeviceAgentChatView(
+                        store: store,
+                        messages: agentMessages,
+                        isResponding: isAgentResponding,
+                        draft: $agentDraft,
+                        focus: $isAgentInputFocused,
+                        onSend: { prompt in sendAgentMessage(prompt) },
+                        onBack: goBack
+                    )
                 } else if isDeviceVideoStep {
                     deviceVideoStep(in: proxy.size)
                 } else if currentStep.scrollsVertically {
                     scrollableStep(in: proxy.size)
                 } else {
-                    if isDeviceAgentStep {
-                        deviceAgentBackground(in: proxy.size)
-                    } else {
-                        FigmaScreenView(assetName: visibleScreenAssetName)
-                            .id(visibleScreenAssetName)
-                    }
-
-                    if isDeviceAgentStep {
-                        deviceAgentChat(in: proxy.size)
-                    }
+                    FigmaScreenView(assetName: visibleScreenAssetName)
+                        .id(visibleScreenAssetName)
 
                     ForEach(Array(currentStep.targets.enumerated()), id: \.offset) { _, target in
                         hotspot(target, in: proxy.size)
@@ -72,9 +74,8 @@ struct FeatureDemoView: View {
                     }
                 }
 
-                if isDeviceAgentStep {
-                    deviceAgentBackControl(in: proxy.size)
-                } else if feature != .lactationPlan
+                if !isDeviceAgentStep
+                    && feature != .lactationPlan
                     && !isCommunityIntroStep
                     && currentStep.hasBackButton
                     && !currentStep.scrollsVertically {
@@ -91,9 +92,10 @@ struct FeatureDemoView: View {
                 exitButton(in: proxy.size)
             }
         }
-        // Keep the keyboard safe area active so the live Agent composer
-        // follows the real iOS keyboard instead of remaining underneath it.
         .ignoresSafeArea(.container, edges: .all)
+        // The Agent screen tracks the keyboard itself and shortens its own
+        // layout, so the shared canvas must not be translated underneath it.
+        .ignoresSafeArea(isDeviceAgentStep ? .keyboard : [], edges: .bottom)
         .onAppear {
             expandExitButtonTemporarily()
         }
@@ -314,32 +316,6 @@ struct FeatureDemoView: View {
             y: frame.minY + frame.height * target.rect.midY
         )
         .accessibilityLabel(target.label)
-    }
-
-    /// The Agent screen keeps its approved 402x874 layout while the keyboard is
-    /// presented. Anchor its back hit target to that same fixed-width canvas so
-    /// it never moves when the available height becomes shorter.
-    private func deviceAgentBackControl(in size: CGSize) -> some View {
-        let frame = fixedWidthDesignFrame(in: size)
-        let scale = frame.width / 402
-
-        return Button {
-            store.userDidInteract()
-            isAgentInputFocused = false
-            goBack()
-        } label: {
-            Rectangle()
-                .fill(Color.clear)
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .frame(width: 104 * scale, height: 112 * scale)
-        .position(
-            x: frame.minX + 52 * scale,
-            y: frame.minY + 102 * scale
-        )
-        .zIndex(50)
-        .accessibilityLabel("Previous screen")
     }
 
     @ViewBuilder
@@ -1101,311 +1077,6 @@ struct FeatureDemoView: View {
         .accessibilityLabel(isPhaseOne ? "Unbox and inspect tips" : "Disassemble parts tips")
     }
 
-    @ViewBuilder
-    private func deviceAgentChat(in size: CGSize) -> some View {
-        // Preserve the design width while the available height changes with
-        // the keyboard. The Figma screen is cropped, never scaled down.
-        let frame = fixedWidthDesignFrame(in: size)
-        let scale = frame.width / 402
-        let composerHeight = 62 * scale
-        let bottomSpacing = (isAgentInputFocused ? 10 : 28) * scale
-        let restingComposerCenter = frame.minY + 814 * scale
-        let availableComposerCenter = size.height - bottomSpacing - composerHeight / 2
-        let composerCenterY = min(restingComposerCenter, availableComposerCenter)
-        // Once the first question is sent, the conversation replaces the IP
-        // hero area instead of leaving the rasterized mascot above the chat.
-        let conversationTopDesignY: CGFloat = agentMessages.isEmpty ? 274 : 118
-        let conversationTop = frame.minY + conversationTopDesignY * scale
-        let conversationBottom = composerCenterY - composerHeight / 2 - 8 * scale
-
-        if agentMessages.isEmpty && isAgentInputFocused {
-            focusedAgentPrompts(
-                in: frame,
-                top: frame.minY + 196 * scale,
-                bottom: conversationBottom
-            )
-        } else if agentMessages.isEmpty {
-            agentPromptButton(
-                "How do I know the flange fits?",
-                rect: CGRect(x: 16, y: 565, width: 272, height: 62),
-                in: frame
-            )
-            agentPromptButton(
-                "What if the suction feels weak?",
-                rect: CGRect(x: 16, y: 628, width: 370, height: 74),
-                in: frame
-            )
-            agentPromptButton(
-                "Connection issues.",
-                rect: CGRect(x: 16, y: 704, width: 198, height: 66),
-                in: frame
-            )
-        } else {
-            ZStack {
-                LinearGradient(
-                    colors: [
-                        Color(red: 1, green: 0.956, blue: 0.958),
-                        Color(red: 0.996, green: 0.914, blue: 0.920)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    isAgentInputFocused = false
-                }
-
-                ScrollViewReader { scrollProxy in
-                    ScrollView {
-                        LazyVStack(spacing: 10 * scale) {
-                            ForEach(agentMessages) { message in
-                                deviceAgentBubble(message, scale: scale)
-                                    .id(message.id)
-                            }
-
-                            if isAgentResponding {
-                                HStack {
-                                    ProgressView()
-                                        .tint(Color.brandPlum)
-                                    Text("Cozie AI is searching…")
-                                        .font(.system(size: 13 * scale))
-                                        .foregroundStyle(Color.brandPlum.opacity(0.7))
-                                    Spacer()
-                                }
-                                .padding(12 * scale)
-                                .background(Color.white.opacity(0.9), in: RoundedRectangle(cornerRadius: 18 * scale))
-                                .id("agent-loading")
-                            }
-                        }
-                        .padding(16 * scale)
-                    }
-                    .scrollIndicators(.hidden)
-                    .scrollDismissesKeyboard(.interactively)
-                    .onChange(of: agentMessages.count) { _, _ in
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            scrollProxy.scrollTo(agentMessages.last?.id, anchor: .bottom)
-                        }
-                    }
-                    .onChange(of: isAgentResponding) { _, responding in
-                        guard responding else { return }
-                        withAnimation(.easeOut(duration: 0.2)) {
-                            scrollProxy.scrollTo("agent-loading", anchor: .bottom)
-                        }
-                    }
-                }
-            }
-            .frame(
-                width: frame.width,
-                height: max(110 * scale, conversationBottom - conversationTop)
-            )
-            .clipped()
-            .position(
-                x: frame.midX,
-                y: (conversationTop + conversationBottom) / 2
-            )
-        }
-
-        HStack(spacing: 10 * scale) {
-            Image(systemName: "plus")
-                .font(.system(size: 21 * scale, weight: .regular))
-                .foregroundStyle(Color.brandPlum)
-
-            TextField("Ask about your Momcozy Air 1", text: $agentDraft, axis: .vertical)
-                .font(.system(size: 15 * scale))
-                .foregroundStyle(Color.brandInk)
-                .lineLimit(1...3)
-                .focused($isAgentInputFocused)
-                .submitLabel(.send)
-                .textInputAutocapitalization(.sentences)
-                .onSubmit { sendAgentMessage() }
-
-            if isAgentResponding {
-                ProgressView()
-                    .tint(Color.brandPlum)
-                    .frame(width: 28 * scale, height: 28 * scale)
-            } else if !agentDraft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                Button {
-                    sendAgentMessage()
-                } label: {
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 15 * scale, weight: .bold))
-                        .foregroundStyle(.white)
-                        .frame(width: 32 * scale, height: 32 * scale)
-                        .background(Color.brandPlum, in: Circle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel("Send question")
-            }
-        }
-        .padding(.horizontal, 18 * scale)
-        .frame(width: 370 * scale)
-        .frame(minHeight: composerHeight)
-        .background(Color.white.opacity(0.97), in: Capsule())
-        .overlay {
-            Capsule()
-                .stroke(Color.brandPlum.opacity(isAgentInputFocused ? 0.22 : 0.08), lineWidth: 1)
-        }
-        .shadow(color: .black.opacity(0.08), radius: 12 * scale, y: 3 * scale)
-        .contentShape(Capsule())
-        .onTapGesture {
-            isAgentInputFocused = true
-        }
-        .position(x: frame.midX, y: composerCenterY)
-        .animation(.easeInOut(duration: 0.24), value: isAgentInputFocused)
-    }
-
-    @ViewBuilder
-    private func focusedAgentPrompts(in frame: CGRect, top: CGFloat, bottom: CGFloat) -> some View {
-        let scale = frame.width / 402
-        let height = max(210 * scale, bottom - top)
-
-        VStack(alignment: .leading, spacing: 12 * scale) {
-            focusedAgentPrompt("How do I know the flange fits?", scale: scale)
-            focusedAgentPrompt("What if the suction feels weak?", scale: scale, fillsWidth: true)
-            focusedAgentPrompt("Connection Issues.", scale: scale)
-            Spacer(minLength: 0)
-        }
-        .padding(.horizontal, 16 * scale)
-        .padding(.top, 34 * scale)
-        .frame(width: frame.width, height: height, alignment: .topLeading)
-        .background(
-            LinearGradient(
-                colors: [
-                    Color(red: 1, green: 0.956, blue: 0.958),
-                    Color(red: 0.996, green: 0.914, blue: 0.920)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        )
-        .contentShape(Rectangle())
-        .onTapGesture {
-            isAgentInputFocused = false
-        }
-        .clipped()
-        .position(x: frame.midX, y: top + height / 2)
-        .transition(.opacity)
-    }
-
-    private func focusedAgentPrompt(
-        _ prompt: String,
-        scale: CGFloat,
-        fillsWidth: Bool = false
-    ) -> some View {
-        Button {
-            sendAgentMessage(prompt)
-        } label: {
-            Text(prompt)
-                .font(.system(size: 16 * scale))
-                .foregroundStyle(Color.brandInk)
-                .multilineTextAlignment(.leading)
-                .lineLimit(2)
-                .padding(.horizontal, 16 * scale)
-                .padding(.vertical, 12 * scale)
-                .frame(maxWidth: fillsWidth ? .infinity : nil, alignment: .leading)
-                .frame(minHeight: (fillsWidth ? 66 : 46) * scale, alignment: .leading)
-                .background(Color.white.opacity(0.9), in: RoundedRectangle(cornerRadius: 24 * scale))
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(prompt)
-    }
-
-    @ViewBuilder
-    private func deviceAgentBackground(in size: CGSize) -> some View {
-        let frame = fixedWidthDesignFrame(in: size)
-        let scale = frame.width / 402
-
-        ZStack {
-            FigmaScreenView(assetName: currentStep.assetName)
-                .id(currentStep.assetName)
-                .frame(width: frame.width, height: frame.height)
-
-            // The approved frame already contains a static composer. Cover
-            // that rasterized control before placing the real TextField so
-            // the Agent always shows exactly one editable input.
-            LinearGradient(
-                colors: [
-                    Color(red: 0.997, green: 0.930, blue: 0.935),
-                    Color(red: 1.000, green: 0.956, blue: 0.958)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .frame(width: frame.width, height: 97 * scale)
-            .position(x: frame.midX, y: frame.minY + 825.5 * scale)
-        }
-        .frame(width: frame.width, height: frame.height)
-        .frame(width: size.width, height: size.height, alignment: .top)
-        .clipped()
-    }
-
-
-    private func agentPromptButton(_ prompt: String, rect: CGRect, in frame: CGRect) -> some View {
-        Button {
-            sendAgentMessage(prompt)
-        } label: {
-            Rectangle()
-                .fill(Color.clear)
-                .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .frame(
-            width: frame.width * rect.width / 402,
-            height: frame.height * rect.height / 874
-        )
-        .position(
-            x: frame.minX + frame.width * rect.midX / 402,
-            y: frame.minY + frame.height * rect.midY / 874
-        )
-        .accessibilityLabel(prompt)
-    }
-
-    private func deviceAgentBubble(_ message: DeviceAgentMessage, scale: CGFloat) -> some View {
-        VStack(alignment: message.role == .user ? .trailing : .leading, spacing: 7 * scale) {
-            Text(message.text)
-                .font(.system(size: 14 * scale))
-                .foregroundStyle(message.role == .user ? Color.white : Color.brandInk)
-                .padding(.horizontal, 14 * scale)
-                .padding(.vertical, 10 * scale)
-                .background(
-                    message.role == .user ? Color.brandPlum : Color.white.opacity(0.94),
-                    in: RoundedRectangle(cornerRadius: 18 * scale, style: .continuous)
-                )
-
-            if !message.sources.isEmpty {
-                VStack(alignment: .leading, spacing: 4 * scale) {
-                    Text("Sources")
-                        .font(.system(size: 10 * scale, weight: .semibold))
-                        .foregroundStyle(Color.brandPlum.opacity(0.62))
-                    ForEach(message.sources.prefix(3)) { source in
-                        if source.url.scheme == "momcozy" {
-                            HStack(spacing: 4 * scale) {
-                                Image(systemName: "doc.text")
-                                Text(source.title)
-                                    .lineLimit(1)
-                            }
-                            .font(.system(size: 10 * scale))
-                            .foregroundStyle(Color.brandPlum)
-                            .accessibilityLabel("Knowledge source: \(source.title)")
-                        } else {
-                            Link(destination: source.url) {
-                                HStack(spacing: 4 * scale) {
-                                    Image(systemName: "link")
-                                    Text(source.title)
-                                        .lineLimit(1)
-                                }
-                                .font(.system(size: 10 * scale))
-                                .foregroundStyle(Color.brandPlum)
-                            }
-                        }
-                    }
-                }
-                .padding(.horizontal, 6 * scale)
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: message.role == .user ? .trailing : .leading)
-    }
-
     private func sendAgentMessage(_ suggestedPrompt: String? = nil) {
         let question = (suggestedPrompt ?? agentDraft).trimmingCharacters(in: .whitespacesAndNewlines)
         guard !question.isEmpty, !isAgentResponding else { return }
@@ -2114,7 +1785,7 @@ struct DemoProgress: View {
     }
 }
 
-private struct DeviceAgentMessage: Identifiable, Hashable {
+struct DeviceAgentMessage: Identifiable, Hashable {
     enum Role: String, Hashable {
         case user
         case assistant
@@ -2126,7 +1797,7 @@ private struct DeviceAgentMessage: Identifiable, Hashable {
     var sources: [DeviceAgentSource] = []
 }
 
-private struct DeviceAgentSource: Identifiable, Hashable {
+struct DeviceAgentSource: Identifiable, Hashable {
     var id: String { url.absoluteString }
     let title: String
     let url: URL
@@ -2205,9 +1876,9 @@ private struct AIAgentClient {
             ?? Bundle.main.object(forInfoDictionaryKey: "AI_PROXY_URL") as? String
             ?? environment["OPENAI_PROXY_URL"]
             ?? Bundle.main.object(forInfoDictionaryKey: "OPENAI_PROXY_URL") as? String
+            ?? "https://pike-founded-oasis-carpet.trycloudflare.com/agent"
 
-        if let proxyValue,
-           let proxyURL = URL(string: proxyValue),
+        if let proxyURL = URL(string: proxyValue),
            let scheme = proxyURL.scheme,
            ["https", "http"].contains(scheme.lowercased()) {
             return proxyURL

@@ -989,11 +989,14 @@ private struct CommunityExactFigmaScrollView: View {
                 .frame(height: 0)
 
                 if let image = FigmaScreenImageLoader.image(named: assetName) {
+                    let scale = proxy.size.width / 402
+
                     Image(uiImage: image)
                         .resizable()
                         .interpolation(.high)
                         .scaledToFit()
                         .frame(width: proxy.size.width)
+                        .offset(y: -8 * scale)
                         .accessibilityLabel("Pumping moms group")
                 }
             }

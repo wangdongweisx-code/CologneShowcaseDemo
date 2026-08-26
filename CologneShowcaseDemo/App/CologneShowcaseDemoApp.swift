@@ -2,6 +2,10 @@ import SwiftUI
 
 @main
 struct CologneShowcaseDemoApp: App {
+    init() {
+        BrandFonts.register()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootDemoView()
