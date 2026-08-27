@@ -33,6 +33,13 @@ struct DeviceAgentChatView: View {
             ZStack(alignment: .top) {
                 DeviceAgentBackdrop()
 
+                // Tapping anywhere that is not itself interactive puts the
+                // keyboard away. This layer sits behind the content, so the
+                // suggestions and the composer keep their own taps.
+                Color.clear
+                    .contentShape(.rect)
+                    .onTapGesture(perform: dismissKeyboard)
+
                 // The flow hides the live status bar, so the approved frame's
                 // own one is reused here to stay in step with the raster screens.
                 HStack(spacing: 0) {
@@ -52,7 +59,7 @@ struct DeviceAgentChatView: View {
                     Spacer(minLength: 0)
 
                     composer(scale: scale)
-                        .padding(.top, metrics.composerTopGap * scale)
+                        .padding(.top, metrics.composerGap(hasConversation: !messages.isEmpty) * scale)
 
                     if metrics.showsDisclaimer {
                         Text("AI-generated, not professional advice")
@@ -94,6 +101,8 @@ struct DeviceAgentChatView: View {
                         Capsule().stroke(Color.agentBadge, lineWidth: 1)
                     }
             }
+            .padding(.leading, 55 * scale)
+            .offset(y: -8 * scale)
 
             HStack {
                 Button {
@@ -132,7 +141,16 @@ struct DeviceAgentChatView: View {
                         conversation(scale: scale)
                     }
                 }
-                .frame(minHeight: height, alignment: .bottom)
+                // The hero fills the page, while a conversation starts at the top
+                // and grows downwards until it needs to scroll.
+                .frame(minHeight: height, alignment: messages.isEmpty ? .bottom : .top)
+                // A scroll view swallows taps on its empty space, so it needs
+                // its own dismiss layer rather than relying on the one behind.
+                .background {
+                    Color.clear
+                        .contentShape(.rect)
+                        .onTapGesture(perform: dismissKeyboard)
+                }
             }
             .scrollIndicators(.hidden)
             .scrollDismissesKeyboard(.interactively)
@@ -217,15 +235,19 @@ struct DeviceAgentChatView: View {
             }
 
             if isResponding {
-                HStack(spacing: 8 * scale) {
-                    ProgressView().tint(Color.brandPlum)
-                    Text("Cozie AI is searching…")
-                        .font(.brandBody(13 * scale, relativeTo: .footnote))
-                        .foregroundStyle(Color.brandPlum.opacity(0.7))
-                    Spacer(minLength: 0)
+                VStack(alignment: .leading, spacing: 7 * scale) {
+                    assistantIdentity(scale: scale)
+
+                    HStack(spacing: 8 * scale) {
+                        ProgressView().tint(Color.brandPlum)
+                        Text("CozyAI is searching…")
+                            .font(.brandBody(13 * scale, relativeTo: .footnote))
+                            .foregroundStyle(Color.brandPlum.opacity(0.7))
+                    }
+                    .padding(12 * scale)
+                    .background(Color.agentBubble, in: .rect(cornerRadius: 18 * scale, style: .continuous))
                 }
-                .padding(12 * scale)
-                .background(Color.agentSurface, in: .rect(cornerRadius: 18 * scale, style: .continuous))
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .id("agent-progress")
             }
         }
@@ -237,48 +259,39 @@ struct DeviceAgentChatView: View {
         let isUser = message.role == .user
 
         return VStack(alignment: isUser ? .trailing : .leading, spacing: 7 * scale) {
+            if !isUser {
+                assistantIdentity(scale: scale)
+            }
+
             Text(message.text)
                 .font(.brandBody(15 * scale, relativeTo: .body))
                 .foregroundStyle(isUser ? Color.white : Color.brandInk)
+                .lineSpacing(5 * scale)
                 .padding(.horizontal, 14 * scale)
                 .padding(.vertical, 11 * scale)
                 .background(
-                    isUser ? Color.brandPlum : Color.agentSurface,
+                    isUser ? Color.brandPlum : Color.agentBubble,
                     in: .rect(cornerRadius: 18 * scale, style: .continuous)
                 )
-
-            if !message.sources.isEmpty {
-                VStack(alignment: .leading, spacing: 4 * scale) {
-                    Text("Sources")
-                        .font(.brandSemiBold(10 * scale, relativeTo: .caption2))
-                        .foregroundStyle(Color.brandPlum.opacity(0.62))
-
-                    ForEach(message.sources.prefix(3)) { source in
-                        sourceLabel(source, scale: scale)
-                    }
-                }
-                .padding(.horizontal, 6 * scale)
-            }
+                .frame(maxWidth: Metrics.bubbleMaxWidth * scale, alignment: isUser ? .trailing : .leading)
         }
         .frame(maxWidth: .infinity, alignment: isUser ? .trailing : .leading)
     }
 
-    @ViewBuilder
-    private func sourceLabel(_ source: DeviceAgentSource, scale: CGFloat) -> some View {
-        if source.url.scheme == "momcozy" {
-            Label(source.title, systemImage: "doc.text")
-                .font(.brandBody(10 * scale, relativeTo: .caption2))
-                .foregroundStyle(Color.brandPlum)
-                .lineLimit(1)
-                .accessibilityLabel("Knowledge source: \(source.title)")
-        } else {
-            Link(destination: source.url) {
-                Label(source.title, systemImage: "link")
-                    .font(.brandBody(10 * scale, relativeTo: .caption2))
-                    .foregroundStyle(Color.brandPlum)
-                    .lineLimit(1)
-            }
+    private func assistantIdentity(scale: CGFloat) -> some View {
+        HStack(spacing: 8 * scale) {
+            FigmaTransparentAssetView(assetName: "device-agent-mascot")
+                .frame(width: 22 * scale, height: 22 * scale)
+                .frame(width: 28 * scale, height: 28 * scale)
+                .background(Color.agentSurface, in: .circle)
+                .overlay { Circle().stroke(Color.brandPlum.opacity(0.08), lineWidth: 1) }
+
+            Text("CozyAI")
+                .font(.brandSemiBold(15 * scale, relativeTo: .subheadline))
+                .foregroundStyle(Color.brandInk)
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("CozyAI")
     }
 
     // MARK: - Composer
@@ -334,6 +347,12 @@ struct DeviceAgentChatView: View {
 
     // MARK: - Keyboard
 
+    private func dismissKeyboard() {
+        guard focus.wrappedValue else { return }
+        store.userDidInteract()
+        focus.wrappedValue = false
+    }
+
     private func keyboardHeight(from note: Notification) -> CGFloat {
         guard let end = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return 0 }
         return end.height
@@ -360,6 +379,9 @@ private struct Metrics {
     /// Three single-line capsules plus their gaps, with a little slack.
     static let suggestionsHeight: CGFloat = 168
     static let mascotHeight: CGFloat = 146
+    /// A bubble keeps to three quarters of the page so it reads as a message
+    /// rather than a full-width system banner.
+    static let bubbleMaxWidth: CGFloat = 402 * 0.75
 
     let isCompact: Bool
 
@@ -371,6 +393,11 @@ private struct Metrics {
     var showsDisclaimer: Bool { !isCompact }
 
     private var disclaimerHeight: CGFloat { showsDisclaimer ? 29 : 0 }
+
+    /// A conversation sits closer to the composer than the hero does.
+    func composerGap(hasConversation: Bool) -> CGFloat {
+        hasConversation ? min(12, composerTopGap) : composerTopGap
+    }
 
     /// The IP absorbs whatever the keyboard takes, so every suggestion stays
     /// fully visible instead of being clipped at the bottom of the scroll area.
@@ -390,7 +417,7 @@ private struct Metrics {
     func scrollHeight(in available: CGFloat, hasConversation: Bool) -> CGFloat {
         let reserved = Self.navigationTop
             + Self.navigationHeight
-            + (hasConversation ? 12 : composerTopGap)
+            + composerGap(hasConversation: hasConversation)
             + Self.composerHeight
             + disclaimerHeight
             + bottomInset
@@ -438,6 +465,8 @@ private struct DeviceAgentBackdrop: View {
 private extension Color {
     /// Chips and assistant bubbles: white with the faintest warm cast.
     static let agentSurface = Color(red: 1.000, green: 0.996, blue: 0.996)
+    /// CozyAI replies: a neutral 7% ink veil over whatever the backdrop shows.
+    static let agentBubble = Color.black.opacity(0.07)
     static let agentComposerFill = Color(red: 0.996, green: 0.988, blue: 0.988)
     static let agentPlaceholder = Color(red: 0.62, green: 0.58, blue: 0.60)
     static let agentDisclaimer = Color(red: 0.72, green: 0.65, blue: 0.66)
